@@ -1,0 +1,9 @@
+# OpenStack
+export OS_AUTH_URL=http://1.1.1.1:5000/v2.0
+export OS_TENANT_NAME=mytenant
+export OS_USERNAME=user
+export OS_PASSWORD=password
+
+# AWS
+export AWS_ACCESS_KEY_ID=MySecretId
+export AWS_SECRET_ACCESS_KEY=MySecret
