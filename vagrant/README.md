@@ -22,7 +22,7 @@ The default login is `Username: admin Password: admin`. You can change the admin
 these commands inside the VM
 
 ```shell
-$ vagrant shh
+$ vagrant ssh
 $ sudo graylog2-ctl set-admin-password !SeCreTPasSwOrD?
 $ sudo graylog2-ctl reconfigure
 ```
