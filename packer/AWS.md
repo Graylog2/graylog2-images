@@ -1,16 +1,17 @@
 AWS EC2 Images
 ==============
 
-| Version | Region | AMI | ec2 command |
+| Version | Region | AMI | Launch Wizard |
 |---------|--------|-----|-------------|
-| 0.91.1  | us-east-1 | ami-b461e7dc | `ec2-run-instances ami-b461e7dc -t m3.medium --region us-east-1 --key ${EC2_KEYPAIR_US_EAST_1}` |
-| 0.91.1  | us-west-1 | ami-e1697da4 | `ec2-run-instances ami-e1697da4 -t m3.medium --region us-west-1 --key ${EC2_KEYPAIR_US_WEST_1}` |
-| 0.91.1  | eu-west-1 | ami-d6be17a1 | `ec2-run-instances ami-d6be17a1 -t m3.medium --region eu-west-1 --key ${EC2_KEYPAIR_EU_WEST_1}` |
+| 0.91.1  | us-east-1 | ami-b461e7dc | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-b461e7dc) |
+| 0.91.1  | us-west-1 | ami-e1697da4 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-e1697da4) |
+| 0.91.1  | eu-west-1 | ami-d6be17a1 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-d6be17a1) |
 
 
 ### Usage
 
-  * Spin up your instance with the given command or use the web interface with the given AMI ID.
+  * Click on 'Launch instance' for your AWS region to start Graylog2 into.
+  * Finish the wizard and spin up the VM.
   * Login to the instance as user `ubuntu`
   * Run `sudo graylog2-ctl reconfigure`
   * Access the Graylog2 by pointing your browser to the instance IP port 9000 `http://<instance ip>:9000`
