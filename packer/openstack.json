@@ -2,7 +2,7 @@
   "builders": [{
     "type": "openstack",
     "ssh_username": "ubuntu",
-    "image_name": "graylog2_0.91.1",
+    "image_name": "graylog2_0.91.3",
     "source_image": "2b94b765-26ec-489e-a2b6-c9f5ebd6d946",
     "flavor": "6af09260-6901-466c-9eb3-836574ed160b"
   }],
