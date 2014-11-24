@@ -11,5 +11,12 @@ RUN curl -s -L -O https://packages.graylog2.org/releases/graylog2-omnibus/ubuntu
 RUN dpkg -i graylog2_latest.deb && \
 rm graylog2_latest.deb
 
-EXPOSE 12900
+VOLUME /var/opt/graylog2/data
+VOLUME /var/log/graylog2
+
+EXPOSE 9000      # web interface
+EXPOSE 12201     # gelf tcp
+EXPOSE 12201/udp # gelf udp
+EXPOSE 12900     # rest api
+
 CMD /opt/graylog2/embedded/bin/runsvdir-docker & graylog2-ctl set-admin-password $GRAYLOG2_PASSWORD & graylog2-ctl reconfigure && tail -f /var/log/graylog2/server/current
