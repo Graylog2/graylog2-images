@@ -14,6 +14,12 @@ $ docker run -t -p 9000:9000 -p 12201:12201 -e GRAYLOG2_PASSWORD=admin graylog2
 
 This will create a container and runs Graylog2 in it.
 
+You can also mount data and log directories to make your data persistent:
+
+```shell
+docker run -t -p 9000:9000 -p 12201:12201 -e GRAYLOG2_PASSWORD=admin -v /graylog2/data:/var/opt/graylog2/data -v /graylog2/logs:/var/log/graylog2 graylog2
+```
+
 Usage
 -----
 After downloading all software packages, your Graylog2 instance is ready to use.
