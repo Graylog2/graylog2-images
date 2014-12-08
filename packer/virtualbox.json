@@ -1,6 +1,7 @@
 {
   "builders": [{
     "type": "virtualbox-iso",
+    "format": "ova",
     "headless": true,
     "guest_os_type": "Ubuntu_64",
     "vm_name": "graylog2",
@@ -26,7 +27,10 @@
     "vboxmanage": [
       ["modifyvm", "{{.Name}}", "--memory", "4096"],
       ["modifyvm", "{{.Name}}", "--cpus", "2"],
-      ["modifyvm", "{{.Name}}", "--natpf1", "webui,tcp,,9000,,9000"]
+      ["modifyvm", "{{.Name}}", "--natpf1", "tcp9000,tcp,,9000,,9000"],
+      ["modifyvm", "{{.Name}}", "--natpf1", "tcp12900,tcp,,12900,,12900"],
+      ["modifyvm", "{{.Name}}", "--natpf1", "tcp12201,tcp,,12201,,12201"],
+      ["modifyvm", "{{.Name}}", "--natpf1", "udp12201,udp,,12201,,12201"]
     ]
   }],
   "provisioners": [
