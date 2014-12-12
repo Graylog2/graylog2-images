@@ -5,7 +5,7 @@
     "source_ami": "ami-aaff23c2",
     "instance_type": "m3.large",
     "ssh_username": "ubuntu",
-    "ami_name": "graylog2-0.91.3-{{timestamp}}",
+    "ami_name": "graylog2-0.92.1-{{timestamp}}",
     "ami_description": "Full-stack installation of Graylog2 - maintained by TORCH",
     "ami_groups": ["all"],
     "ami_regions": ["us-west-1", "eu-west-1", "eu-central-1"],
