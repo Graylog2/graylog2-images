@@ -7,7 +7,9 @@ RUN apt-get update && \
     apt-get install -y curl && \
     curl -O -L https://packages.graylog2.org/releases/graylog2-omnibus/ubuntu/graylog2_latest.deb && \
     dpkg -i graylog2_latest.deb && \
-    rm -rf graylog2_latest.deb
+    rm graylog2_latest.deb && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 VOLUME /var/opt/graylog2/data
 VOLUME /var/log/graylog2
