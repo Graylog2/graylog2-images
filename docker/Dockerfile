@@ -9,7 +9,7 @@ RUN apt-get update && \
     dpkg -i graylog2_latest.deb && \
     rm graylog2_latest.deb && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    rm -rf /tmp/* /var/tmp/*
 
 VOLUME /var/opt/graylog2/data
 VOLUME /var/log/graylog2
