@@ -23,4 +23,7 @@ EXPOSE 12201/udp
 # rest api
 EXPOSE 12900
 
-CMD /opt/graylog2/embedded/bin/runsvdir-docker & graylog2-ctl set-admin-password $GRAYLOG2_PASSWORD & graylog2-ctl reconfigure && tail -f /var/log/graylog2/server/current
+CMD /opt/graylog2/embedded/bin/runsvdir-docker & \
+    if [ ! -z "$GRAYLOG2_PASSWORD" ]; then graylog2-ctl set-admin-password $GRAYLOG2_PASSWORD; fi && \
+    graylog2-ctl reconfigure && \
+    tail -f /var/log/graylog2/server/current
