@@ -14,9 +14,11 @@
       "Release": "Latest"
     }
   }],
-  "provisioners": [{
-    "type": "shell",
-    "script": "scripts/install.sh",
-    "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
-  }]
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "scripts/install.sh",
+      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
+    }
+  ]
 }
