@@ -2,7 +2,7 @@
 
 require 'nokogiri'
 
-if not File.exists? ARGV.first
+if ARGV.first.nil? or not File.exists? ARGV.first
   puts "Usage: ovf2ova.rb <file.ovf>"
   exit 1
 end
