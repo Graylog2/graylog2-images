@@ -3,6 +3,10 @@ AWS EC2 Images
 
 | Version | Region | AMI | Launch Wizard |
 |---------|--------|-----|-------------|
+| 0.92.3  | us-east-1 | ami-ca9ff0a2 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-ca9ff0a2) |
+| 0.92.3  | us-west-1 | ami-f5c2dfb0 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-f5c2dfb0) |
+| 0.92.3  | eu-west-1 | ami-f8c2798f | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-f8c2798f) |
+| 0.92.3  | eu-central-1 | ami-843e0e99 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-843e0e99) |
 | 0.92.1  | us-east-1 | ami-aea4c4c6 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-aea4c4c6) |
 | 0.92.1  | us-west-1 | ami-99fbe9dc | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-99fbe9dc) |
 | 0.92.1  | eu-west-1 | ami-e6388691 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-e6388691) |
