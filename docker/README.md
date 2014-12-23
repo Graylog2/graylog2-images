@@ -1,4 +1,4 @@
-Graylog2 as *Docker* container
+Graylog2 *Docker* container
 ==================================
 This project creates a Docker container with full Graylog2 stack installed.
 
