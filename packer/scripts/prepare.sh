@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 # Set up sudo
 echo %ubuntu ALL=NOPASSWD:ALL > /etc/sudoers.d/ubuntu
 chmod 0440 /etc/sudoers.d/ubuntu
