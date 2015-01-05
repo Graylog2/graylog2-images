@@ -3,7 +3,6 @@
 set -x
 
 apt-get update
-apt-get install -y linux-virtual
 apt-get install -y curl wget rsync vim man sudo avahi-autoipd
 apt-get install -y tzdata
 apt-get install -y ntp
