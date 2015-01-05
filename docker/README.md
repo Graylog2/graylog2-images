@@ -11,7 +11,7 @@ $ docker pull graylog2/allinone
 $ docker run -t -p 9000:9000 -p 12201:12201 graylog2/allinone
 ```
 
-This will create a container with all Graylog2 services running.
+This will create a container with all Graylog2 services running. The web interface is listening on port 9000.
 
 
 Usage
@@ -48,15 +48,15 @@ $ docker run -t -p 9000:9000 -p 12201:12201 -v /graylog2/data:/var/opt/graylog2/
 Multi container setup
 ---------------------
 The Omnibus package used for creating the container is able to split Graylog2 into several components.
-This works in a Docker environment as long as your containers run on the same hardware respectively the containers
-need to have direct network access between each other.
-The first started container is the so called `master`, other containers can grab configuration options from here.
+This works in a Docker environment as long as your containers have direct network access between each other e.g.
+through the `--net-host` option.
 
+The first started container is the so called `master`, other containers can grab configuration options from here.
 To setup two containers, one for the web interface and one for the server component do the following:
 
 Start the `master` with Graylog2 server parts
 ```shell
-$ docker run -t -p 12900:12900 -p 12201:12201 -p 4001:4001 -e GRAYLOG2_SERVER=true graylog2/allinone
+$ docker run --net=host -t -e GRAYLOG2_SERVER=true graylog2/allinone
 ```
 The configuration port 4001 is now accessable through the host IP address.
 
@@ -71,4 +71,13 @@ To build the image from scratch run
 
 ```shell
 $ docker build -t graylog2 .
+```
+
+Problems
+--------
+Graylog2 needs a fixed IP address in order to access and restart services properly. If you stop and restart your container the IP address changed
+and Graylog2 is not able to reach all services in the right way. To work around this issue, you can use the host network directly for Graylog2:
+
+```shell
+$ docker run --net=host -t graylog2/allinone
 ```
