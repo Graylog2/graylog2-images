@@ -51,6 +51,11 @@
     },
     {
       "type": "shell",
+      "script": "scripts/autostart.sh",
+      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
+    },
+    {
+      "type": "shell",
       "script": "scripts/cleanup.sh",
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     }
