@@ -20,7 +20,7 @@ There you can set a couple of options through `graylog2-ctl` without touching ac
 |---------|----------------------|
 | `graylog2-ctl set-admin-password <password>` | Set a new admin password |
 | `graylog2-ctl set-admin-username <username>` | Set a diferent username for the admin user |
-| `graylog2-ctl set-email-config <smtp server> [--port=<smtp port> --user=<username> --password=<password>]` | Configure SMTP settings to send a
+| `graylog2-ctl set-email-config <smtp server> [--port=<smtp port> --user=<username> --password=<password>]` | Configure SMTP settings to send alert mails |
 | `graylog2-ctl set-timezone <zone acronym>` | Set the timezone your setup is located in |
 
 After setting one or more of these options re-run `graylog2-ctl reconfigure` to enable the changed configuration.
