@@ -1,4 +1,4 @@
-Create a *Vagrant* box
+*Vagrant* Graylog2 box
 ==================================
 This project creates a Vagrant box with full Graylog2 stack installed.
 

@@ -45,13 +45,6 @@ Noticeable Options
 |ami_groups | 'all' means publicly available|
 |ami_regions | Array of availability zones to copy the image after creation|
 
-### OpenStack
-
-|Parameter | Value |
-|----------|-------|
-|source_image | Put the UUID of your base image here|
-|flavor | UUID of the used machine size|
-
 
 ### Virtualbox
 

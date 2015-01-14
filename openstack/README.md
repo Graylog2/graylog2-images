@@ -1,26 +1,38 @@
-Graylog2 *OVA* appliance
+Openstack Graylog2 Image
 ========================
 
-### Usage
+### Installation
 
-  * Download the image [here](https://packages.graylog2.org/releases/graylog2-omnibus/ova/graylog2.ova)
-  * For VmWare Player/Fusion right click on the image and select 'Run with VmWare'
-  * For Virtualbox select File->Import Appliance
-  * If not automatically, start the VM
-  * Wait some minutes until all services are running
-  * Open the Graylog2 web interface with the displayed URL from the console
-  * Login with user `admin`, password `admin`
+These steps will download the Graylog2 image, uncompress it and import it into the Openstack image store.
+
+```shell
+$ wget https://packages.graylog2.org/releases/graylog2-omnibus/qcow2/graylog2.qcow2.gz
+$ gunzip graylog2.qcow2.gz
+$ glance image-create --name='graylog2' --is-public=true --container-format=bare --disk-format=qcow2 --file graylog2.qcow2
+```
+
+You should now see an image called `graylog2` in the Openstack web interface under `Images`
+
+### Usage
+Launch a new instance of the image, make sure to reserve at least 4GB ram for the instance. After spinning up, login with
+the username `ubuntu` and your selected ssh key. Run the reconfigure program in order to setup Graylog2 and start all services.
+
+```shell
+ssh ubuntu@<vm IP>
+sudo graylog2-ctl reconfigure
+```
+
+Open `http://<vm ip>` in your browser to access the Graylog2 web interface. Default username and password is `admin`.
 
 ### Configuration
 
-You can login to the console of the appliance with username and password `ubuntu`.
-There you can set a couple of options through `graylog2-ctl` without touching actual configuration files.
+You can set a couple of options through `graylog2-ctl` without touching actual configuration files.
 
 | Command | Configuration Option |
 |---------|----------------------|
 | `graylog2-ctl set-admin-password <password>` | Set a new admin password |
 | `graylog2-ctl set-admin-username <username>` | Set a diferent username for the admin user |
-| `graylog2-ctl set-email-config <smtp server> [--port=<smtp port> --user=<username> --password=<password>] | Configure SMTP settings to send a
+| `graylog2-ctl set-email-config <smtp server> [--port=<smtp port> --user=<username> --password=<password>] | Configure SMTP settings to send alert mails |
 | `graylog2-ctl set-timezone <zone acronym>` | Set the timezone your setup is located in |
 
 After setting one or more of these options re-run `graylog2-ctl reconfigure` to enable the changed configuration.
@@ -79,3 +91,4 @@ The following configuration modes do exist
 | `graylog2-ctl reconfigure-as-webinterface` | Only the web interface|
 | `graylog2-ctl reconfigure-as-datanode` | Only elasticsearch |
 | `graylog2-ctl reconfigure-as-server` | Run graylog2-server and mongodb (no elasticsearch) |
+
