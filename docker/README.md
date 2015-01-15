@@ -24,8 +24,8 @@ The default login is Username: `admin` Password: `admin`.
 How to get log data in
 ----------------------
 You can create different kind of inputs under System->Inputs. You already exposed the default GELF port 12201 so it
-is a good idea to start a GELF TCP input there. Here is a [list](https://www.graylog2.org/supported-sources) of availabe
-GELF integartions. To start another input you have to expose the right port e.g. to start a raw TCP input on port 5555
+is a good idea to start a GELF TCP input there. Here is a [list](https://www.graylog2.org/supported-sources) of available
+GELF integrations. To start another input you have to expose the right port e.g. to start a raw TCP input on port 5555
 add to your docker command the `-p 5555:5555` option.
 Then you can send raw text to Graylog2 like `echo 'first log message' | nc localhost 5555`
 
@@ -66,7 +66,7 @@ Start the `master` with Graylog2 server parts
 ```shell
 $ docker run -t -p 12900:12900 -p 12201:12201 -p 4001:4001 -e GRAYLOG2_SERVER=true graylog2/allinone
 ```
-The configuration port 4001 is now accessable through the host IP address.
+The configuration port 4001 is now accessible through the host IP address.
 
 Start the web interface in a second container and give the host address as `master` to fetch configuration options
 ```shell
