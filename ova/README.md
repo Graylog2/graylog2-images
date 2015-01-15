@@ -87,3 +87,14 @@ The following configuration modes do exist
 | `sudo graylog2-ctl reconfigure-as-webinterface` | Only the web interface|
 | `sudo graylog2-ctl reconfigure-as-datanode` | Only elasticsearch |
 | `sudo graylog2-ctl reconfigure-as-server` | Run graylog2-server and mongodb (no elasticsearch) |
+
+Production readiness
+--------------------
+You can use this image for small production setups but please consider to harden the security of the box before.
+
+ * Set another password for the default `ubuntu` user
+ * Disable remote password logins in `/etc/ssh/sshd_config` and deploy proper ssh keys
+ * Seperate the box network-wise from the outside, otherwise Elasticsearch can be reached by anyone
+
+If you want to create your own customised setup take a look at our [Puppet](https://github.com/Graylog2/graylog2-puppet)
+and [Chef](https://github.com/Graylog2/graylog2-cookbook) modules.
