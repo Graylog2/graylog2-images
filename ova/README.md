@@ -14,19 +14,19 @@ Graylog2 *OVA* appliance
 ### Configuration
 
 You can login to the console of the appliance with username and password `ubuntu`.
-There you can set a couple of options through `graylog2-ctl` without touching actual configuration files.
+Using `sudo` you can set a couple of options through `graylog2-ctl` without touching actual configuration files.
 
 | Command | Configuration Option |
 |---------|----------------------|
-| `graylog2-ctl set-admin-password <password>` | Set a new admin password |
-| `graylog2-ctl set-admin-username <username>` | Set a diferent username for the admin user |
-| `graylog2-ctl set-email-config <smtp server> [--port=<smtp port> --user=<username> --password=<password>]` | Configure SMTP settings to send alert mails |
-| `graylog2-ctl set-timezone <zone acronym>` | Set the timezone your setup is located in |
+| `sudo graylog2-ctl set-admin-password <password>` | Set a new admin password |
+| `sudo graylog2-ctl set-admin-username <username>` | Set a diferent username for the admin user |
+| `sudo graylog2-ctl set-email-config <smtp server> [--port=<smtp port> --user=<username> --password=<password>]` | Configure SMTP settings to send alert mails |
+| `sudo graylog2-ctl set-timezone <zone acronym>` | Set the [timezone](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones) your setup is located in |
 
 After setting one or more of these options re-run
 
 ```shell
-$ graylog2-ctl reconfigure
+$ sudo graylog2-ctl reconfigure
 ```
 
 to enable the changed configuration.
@@ -34,13 +34,13 @@ to enable the changed configuration.
 You can also edit the full configuration files under `/opt/graylog2/conf` manually, restart the related service afterwards
 
 ```shell
-$ graylog2-ctl restart graylog2-server
+$ sudo graylog2-ctl restart graylog2-server
 ```
 
 Or to restart all services
 
 ```shell
-$ graylog2-ctl restart
+$ sudo graylog2-ctl restart
 ```
 
 ### Multi VM setup
@@ -81,8 +81,8 @@ The following configuration modes do exist
 
 | Command | Services |
 |---------|----------|
-| `graylog2-ctl reconfigure` | Run all services on this box |
-| `graylog2-ctl reconfigure-as-backend` | Run graylog2-server, elasticsearch and mongodb |
-| `graylog2-ctl reconfigure-as-webinterface` | Only the web interface|
-| `graylog2-ctl reconfigure-as-datanode` | Only elasticsearch |
-| `graylog2-ctl reconfigure-as-server` | Run graylog2-server and mongodb (no elasticsearch) |
+| `sudo graylog2-ctl reconfigure` | Run all services on this box |
+| `sudo graylog2-ctl reconfigure-as-backend` | Run graylog2-server, elasticsearch and mongodb |
+| `sudo graylog2-ctl reconfigure-as-webinterface` | Only the web interface|
+| `sudo graylog2-ctl reconfigure-as-datanode` | Only elasticsearch |
+| `sudo graylog2-ctl reconfigure-as-server` | Run graylog2-server and mongodb (no elasticsearch) |
