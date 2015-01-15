@@ -14,7 +14,8 @@ Graylog2 *OVA* appliance
 ### Configuration
 
 You can login to the console of the appliance with username and password `ubuntu`.
-Using `sudo` you can set a couple of options through `graylog2-ctl` without touching actual configuration files.
+You can set a couple of configuration options through the build-in `graylog2-ctl` command. You need super-user
+permissions to perform an actual change so don't forget the `sudo`.
 
 | Command | Configuration Option |
 |---------|----------------------|
