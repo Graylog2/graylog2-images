@@ -11,6 +11,8 @@ Graylog2 *OVA* appliance
   * Open the Graylog2 web interface with the displayed URL from the console
   * Login with user `admin`, password `admin`
 
+You can also test pre-releases with our [beta](https://packages.graylog2.org/releases/graylog2-omnibus/ova/graylog2beta.ova) branch of the image.
+
 ### Configuration
 
 You can login to the console of the appliance with username and password `ubuntu`.
