@@ -8,7 +8,7 @@
     "ami_name": "graylog2-0.92.4-{{timestamp}}",
     "ami_description": "Full-stack installation of Graylog2 - maintained by TORCH",
     "ami_groups": ["all"],
-    "ami_regions": ["us-west-1", "eu-west-1"],
+    "ami_regions": ["us-west-1", "eu-west-1", "eu-central-1"],
     "tags": {
       "OS_Version": "Ubuntu",
       "Release": "Latest"
