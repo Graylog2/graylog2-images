@@ -22,7 +22,7 @@ doc.xpath("//vbox:Machine", namespaces).remove
 doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:System/vssd:VirtualSystemType",
              namespaces).content = "vmx-07"
 
-# Virtualbox and VmWare Player/Fusion act as network bridge with these settings
+# Virtualbox and VMware Player/Fusion act as network bridge with these settings
 doc.at_xpath("/xmlns:Envelope/ovf:NetworkSection/ovf:Network").set_attribute('ovf:name', 'NAT Network')
 doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType=10]/rasd:Connection").content = "NAT Network"
 doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType=10]/rasd:ResourceSubType").content = "vmxnet3"

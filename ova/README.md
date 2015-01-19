@@ -4,7 +4,7 @@ Graylog2 *OVA* appliance
 ### Usage
 
   * Download the image [here](https://packages.graylog2.org/releases/graylog2-omnibus/ova/graylog2.ova)
-  * For VmWare Player/Fusion right click on the image and select 'Run with VmWare'
+  * For VMware Player/Fusion right click on the image and select 'Run with VmWare'
   * For Virtualbox select File->Import Appliance
   * If not automatically, start the VM
   * Wait some minutes until all services are running
