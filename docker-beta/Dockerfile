@@ -31,6 +31,6 @@ CMD /opt/graylog/embedded/bin/runsvdir-docker & \
     if [ ! -z "$GRAYLOG_SMTP_SERVER" ]; then graylog-ctl set-email-config $GRAYLOG_SMTP_SERVER; fi && \
     if [ ! -z "$GRAYLOG_MASTER" ]; then graylog-ctl local-connect && graylog-ctl set-cluster-master $GRAYLOG_MASTER; fi && \
     if [ ! -z "$GRAYLOG_WEB" ]; then graylog-ctl reconfigure-as-webinterface; \
-    elif [ ! -z "$GRAYLOG2_SERVER" ]; then graylog-ctl reconfigure-as-backend; else \
+    elif [ ! -z "$GRAYLOG_SERVER" ]; then graylog-ctl reconfigure-as-backend; else \
       graylog-ctl local-connect && graylog-ctl reconfigure; fi && \
     tail -F /var/log/graylog/server/current /var/log/graylog/web/current
