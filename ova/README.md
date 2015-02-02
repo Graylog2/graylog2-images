@@ -90,6 +90,29 @@ The following configuration modes do exist
 | `sudo graylog2-ctl reconfigure-as-datanode` | Only elasticsearch |
 | `sudo graylog2-ctl reconfigure-as-server` | Run graylog2-server and mongodb (no elasticsearch) |
 
+Assign a static IP
+--------------
+Per default the appliance make use of DHCP to setup the network. If you want to access Graylog under a static IP please
+edit the file `/etc/network/interfaces` like this (just the important lines):
+
+```
+auto eth0
+iface eth0 inet static
+  address <static IP address>
+  netmask <netmask>
+  gateway <default gateway>
+  pre-up sleep 2
+```
+
+Activate the new IP and reconfigure Graylog to make use of it.
+
+```shell
+$ sudo ifdown eth0 && sudo ifup eth0
+$ sudo graylog2-ctl reconfigure
+```
+
+Wait some time till all services are restarted and running again. Afterwards you should be able to access Graylog with the new IP.
+
 Production readiness
 --------------------
 You can use this image for small production setups but please consider to harden the security of the box before.
