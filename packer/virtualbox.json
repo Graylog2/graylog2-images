@@ -51,7 +51,7 @@
     },
     {
       "type": "shell",
-      "script": "scripts/autostart.sh",
+      "script": "scripts/autostart092.sh",
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     },
     {
