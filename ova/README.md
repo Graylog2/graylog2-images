@@ -22,7 +22,7 @@ permissions to perform an actual change so don't forget the `sudo`.
 | Command | Configuration Option |
 |---------|----------------------|
 | `sudo graylog2-ctl set-admin-password <password>` | Set a new admin password |
-| `sudo graylog2-ctl set-admin-username <username>` | Set a diferent username for the admin user |
+| `sudo graylog2-ctl set-admin-username <username>` | Set a different username for the admin user |
 | `sudo graylog2-ctl set-email-config <smtp server> [--port=<smtp port> --user=<username> --password=<password>]` | Configure SMTP settings to send alert mails |
 | `sudo graylog2-ctl set-timezone <zone acronym>` | Set the [timezone](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones) your setup is located in |
 
