@@ -42,8 +42,11 @@ $ docker run -t -p 9000:9000 -p 12201:12201 -e GRAYLOG2_PASSWORD=SeCuRePwD grayl
 | Variable Name | Configuration Option |
 |---------------|----------------------|
 | GRAYLOG2_PASSWORD | Set admin password |
-| GRAYLOG2_TIMEZONE | Set timezone you are in |
+| GRAYLOG2_TIMEZONE | Set [timezone (TZ)](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones) you are in |
 | GRAYLOG2_SMTP_SERVER | Hostname/IP address of your SMTP server for sending alert mails |
+
+SMTP Server can take options for authentication, make sure to use an SSL port:  
+GRAYLOG2_SMTP_SERVER="mailserver.com --port=465 --user=username@mailserver.com --password=SecretPassword"
 
 Persist data
 ------------
