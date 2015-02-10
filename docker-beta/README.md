@@ -62,7 +62,6 @@ Other volumes to persist:
 |------|-------------|
 | /var/opt/graylog/data | Elasticsearch for raw log data and MongoDB as configuration store |
 | /var/log/graylog | Internal logs for all running services |
-| /opt/graylog/conf | Rendered configuration files |
 | /opt/graylog/plugin | Graylog server plugins |
 
 Multi container setup

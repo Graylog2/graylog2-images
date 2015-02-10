@@ -13,7 +13,6 @@ RUN apt-get update && \
 
 VOLUME /var/opt/graylog/data
 VOLUME /var/log/graylog
-VOLUME /opt/graylog/conf
 VOLUME /opt/graylog/plugin
 
 # web interface
