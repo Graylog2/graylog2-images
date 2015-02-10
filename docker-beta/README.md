@@ -50,11 +50,20 @@ GRAYLOG2_SMTP_SERVER="mailserver.com --port=465 --user=username@mailserver.com -
 
 Persist data
 ------------
-You can mount the data and log directories to store your data outside of the container:
+In order to persist log data and configuration settings mount the Graylog data directory outside the container:
 
 ```shell
 $ docker run -t -p 9000:9000 -p 12201:12201 -v /graylog/data:/var/opt/graylog/data -v /graylog/logs:/var/log/graylog graylog2/allinone-beta
 ```
+
+Other volumes to persist:
+
+| Path | Description |
+|------|-------------|
+| /var/opt/graylog/data | Elasticsearch for raw log data and MongoDB as configuration store |
+| /var/log/graylog | Internal logs for all running services |
+| /opt/graylog/conf | Rendered configuration files |
+| /opt/graylog/plugin | Graylog server plugins |
 
 Multi container setup
 ---------------------

@@ -13,6 +13,8 @@ RUN apt-get update && \
 
 VOLUME /var/opt/graylog2/data
 VOLUME /var/log/graylog2
+VOLUME /opt/graylog2/conf
+VOLUME /opt/graylog2/plugin
 
 # web interface
 EXPOSE 9000
