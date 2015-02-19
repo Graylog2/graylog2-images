@@ -3,7 +3,7 @@ Graylog *OVA* appliance
 
 ### Usage
 
-  * Download the image [here](https://packages.graylog2.org/releases/graylog2-omnibus/ova/graylog.ova)
+  * Download the image [here](https://packages.graylog2.org/releases/graylog2-omnibus/ova/graylog.ova) - current version is 1.0.0
   * For VMware Player/Fusion right click on the image and select 'Run with VMware'
   * For Virtualbox select File->Import Appliance
   * If not automatically, start the VM
@@ -11,7 +11,7 @@ Graylog *OVA* appliance
   * Open the Graylog web interface with the displayed URL from the console
   * Login with user `admin`, password `admin`
 
-You can also test pre-releases with our [beta](https://packages.graylog2.org/releases/graylog2-omnibus/ova/graylog-beta.ova) branch of the image.
+You can also test pre-releases with our [beta](https://packages.graylog2.org/releases/graylog2-omnibus/ova/graylog-beta.ova) branch of the image - current version 1.0.0.rc-4
 
 ### Configuration
 
