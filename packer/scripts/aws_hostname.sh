@@ -18,4 +18,8 @@ echo "$ipaddr $myname $shortname" >> $hostsfile
 EOF
 chmod +x /etc/network/if-up.d/update_hosts
 sed -i 's/^preserve_hostname.*/preserve_hostname: true/' /etc/cloud/cloud.cfg
-apt-get install -y language-pack-en
+
+cat > /etc/environment <<'EOF'
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+LC_ALL="en_US.UTF-8"
+EOF
