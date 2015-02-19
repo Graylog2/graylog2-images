@@ -17,9 +17,11 @@ AWS EC2 Images
 ### Usage
 
   * Click on 'Launch instance' for your AWS region to start Graylog into.
+  * Choose an instance type with at least 4GB memory
   * Finish the wizard and spin up the VM.
   * Login to the instance as user `ubuntu`
   * Run `sudo graylog-ctl reconfigure`
+  * Open port 80 in the security group of the appliance
 
 Open `http://<vm ip>` in your browser to access the Graylog web interface. Default username and password is `admin`.
 
