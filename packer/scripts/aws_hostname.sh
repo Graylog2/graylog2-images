@@ -1,3 +1,4 @@
+echo 'graylog' > /etc/hostname
 cat > /etc/network/if-up.d/update_hosts <<'EOF'
 #!/bin/bash
 
@@ -16,3 +17,4 @@ ipaddr=$(ifconfig eth0 | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | 
 echo "$ipaddr $myname $shortname" >> $hostsfile
 EOF
 chmod +x /etc/network/if-up.d/update_hosts
+sed -i 's/^preserve_hostname.*/preserve_hostname: true/' /etc/cloud/cloud.cfg
