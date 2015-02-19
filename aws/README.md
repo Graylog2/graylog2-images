@@ -3,11 +3,11 @@ AWS EC2 Images
 
 | Version | Region | AMI | Launch Wizard |
 |---------|--------|-----|-------------|
-| 1.0.0  | us-east-1 | ami-f4f4a29c | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-f4f4a29c) |
-| 1.0.0  | us-west-1 | ami-dca0ba99 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-dca0ba99) |
-| 1.0.0  | eu-west-1 | ami-6f831718 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-6f831718) |
-| 1.0.0  | eu-central-1 | ami-5c380a41 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-5c380a41) |
-| 1.0.0  | ap-southeast-2 | ami-d1780eeb | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-d1780eeb) |
+| 1.0.0  | us-east-1 | ami-ee194886 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-ee194886) |
+| 1.0.0  | us-west-1 | ami-05a74241 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-05a74241) |
+| 1.0.0  | eu-west-1 | ami-b9be2ace | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-b9be2ace) |
+| 1.0.0  | eu-central-1 | ami-d23e0ccf | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-d23e0ccf) |
+| 1.0.0  | ap-southeast-2 | ami-23601619 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-23601619) |
 | 0.92.4  | us-east-1 | ami-5e1c5736 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-5e1c5736) |
 | 0.92.4  | us-west-1 | ami-c8adb68d | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-c8adb68d) |
 | 0.92.4  | eu-west-1 | ami-0d78f37a | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-0d78f37a) |
@@ -21,7 +21,7 @@ AWS EC2 Images
   * Finish the wizard and spin up the VM.
   * Login to the instance as user `ubuntu`
   * Run `sudo graylog-ctl reconfigure`
-  * Open port 80 in the security group of the appliance
+  * Open port 80 and ports for receiving log messages in the security group of the appliance
 
 Open `http://<vm ip>` in your browser to access the Graylog web interface. Default username and password is `admin`.
 
