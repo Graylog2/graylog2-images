@@ -2,13 +2,13 @@
   "builders": [{
     "type": "amazon-ebs",
     "region": "us-east-1",
-    "source_ami": "ami-aaff23c2",
-    "instance_type": "m3.large",
+    "source_ami": "ami-9a562df2",
+    "instance_type": "m3.medium",
     "ssh_username": "ubuntu",
     "ami_name": "graylog-1.0.0-{{timestamp}}",
     "ami_description": "Full-stack installation of Graylog - maintained by Graylog, Inc.",
     "ami_groups": ["all"],
-    "ami_regions": ["us-west-1", "eu-west-1", "ap-southeast-2"],
+#    "ami_regions": ["us-west-1", "eu-west-1", "ap-southeast-2"],
     "tags": {
       "OS_Version": "Ubuntu",
       "Release": "Latest"
@@ -18,6 +18,11 @@
     {
       "type": "shell",
       "script": "scripts/install.sh",
+      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
+    },
+    {
+      "type": "shell",
+      "script": "scripts/aws_hostname.sh",
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     }
   ]
