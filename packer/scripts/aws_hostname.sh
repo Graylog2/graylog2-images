@@ -18,4 +18,4 @@ echo "$ipaddr $myname $shortname" >> $hostsfile
 EOF
 chmod +x /etc/network/if-up.d/update_hosts
 sed -i 's/^preserve_hostname.*/preserve_hostname: true/' /etc/cloud/cloud.cfg
-sudo locale-gen UTF-8
+apt-get install -y language-pack-en
