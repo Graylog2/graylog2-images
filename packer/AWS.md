@@ -20,13 +20,13 @@ AWS EC2 Images
 
 ### Usage
 
-  * Click on 'Launch instance' for your AWS region to start Graylog2 into.
+  * Click on 'Launch instance' for your AWS region to start Graylog into.
   * Finish the wizard and spin up the VM.
   * Login to the instance as user `ubuntu`
-  * Run `sudo graylog2-ctl reconfigure`
-  * Access Graylog2 by pointing your browser to the instance IP port 9000 `http://<instance ip>:9000`
+  * Run `sudo graylog-ctl reconfigure`
+  * Access Graylog by pointing your browser to the instance IP port 9000 `http://<instance ip>:9000`
   * Login with user `admin`, password `admin`
  
- You can change the password with the command `sudo graylog2-ctl set-admin-password <your new password>` and
- rerun `sudo graylog2-ctl reconfigure`
+ You can change the password with the command `sudo graylog-ctl set-admin-password <your new password>` and
+ rerun `sudo graylog-ctl reconfigure`
 

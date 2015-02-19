@@ -1,6 +1,6 @@
 Vagrant.configure(2)  do |config|
   config.vm.box = "ubuntu/trusty64"
-  config.vm.hostname = "graylog2"
+  config.vm.hostname = "graylog"
 
   config.vm.network :forwarded_port, guest: 9000, host: 9000
   config.vm.network :forwarded_port, guest: 12900, host: 12900
@@ -12,11 +12,11 @@ Vagrant.configure(2)  do |config|
   end
 
   $script = <<SCRIPT
-    echo 'Going to download Graylog2...'
-    curl -s -L -O https://packages.graylog2.org/releases/graylog2-omnibus/ubuntu/graylog2_latest.deb
-    dpkg -i graylog2_latest.deb
-    rm graylog2_latest.deb
-    graylog2-ctl reconfigure
+    echo 'Going to download Graylog...'
+    curl -s -L -O https://packages.graylog2.org/releases/graylog2-omnibus/ubuntu/graylog_latest.deb
+    dpkg -i graylog_latest.deb
+    rm graylog_latest.deb
+    graylog-ctl reconfigure
 SCRIPT
 
   config.vm.provision "shell", inline: $script

@@ -1,6 +1,6 @@
 Create machine images with *Packer*
 ==================================
-This project creates machine images with a full Graylog2 stack installed.
+This project creates machine images with a full Graylog stack installed.
 
 Requirements
 ------------
@@ -18,21 +18,21 @@ This e.g. creates an Amazon AMI for you.
 
 Usage
 -----
-We install in all machine images our Omnibus package that comes with the `graylog2-ctl` command.
+We install in all machine images our Omnibus package that comes with the `graylog-ctl` command.
 After spinning up the VM you have to login with the `ubuntu` user and execute at least
 
 ```shell
-$ sudo graylog2-ctl reconfigure
+$ sudo graylog-ctl reconfigure
 ```
 
-This will setup your Graylog2 installation and start all services. You can reach the web interface by
+This will setup your Graylog installation and start all services. You can reach the web interface by
 pointing your browser to the IP of the appliance: `http://<IP address>:9000`
 
 The default login is `Username: admin Password: admin`. You can change the admin password:
 
 ```shell
-$ sudo graylog2-ctl set-admin-password !SeCreTPasSwOrD?
-$ sudo graylog2-ctl reconfigure
+$ sudo graylog-ctl set-admin-password !SeCreTPasSwOrD?
+$ sudo graylog-ctl reconfigure
 ```
 
 Noticeable Options

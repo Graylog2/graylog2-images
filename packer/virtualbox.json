@@ -4,7 +4,7 @@
     "format": "ovf",
     "headless": true,
     "guest_os_type": "Ubuntu_64",
-    "vm_name": "graylog2",
+    "vm_name": "graylog",
     "iso_url": "http://releases.ubuntu.com/14.04.1/ubuntu-14.04.1-server-amd64.iso",
     "iso_checksum": "ca2531b8cd79ea5b778ede3a524779b9",
     "iso_checksum_type": "md5",
@@ -51,7 +51,7 @@
     },
     {
       "type": "shell",
-      "script": "scripts/autostart092.sh",
+      "script": "scripts/autostart.sh",
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     },
     {
