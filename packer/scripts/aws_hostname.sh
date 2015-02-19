@@ -1,4 +1,3 @@
-echo 'graylog' > /etc/hostname
 cat > /etc/network/if-up.d/update_hosts <<'EOF'
 #!/bin/bash
 
