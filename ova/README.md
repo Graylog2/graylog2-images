@@ -113,6 +113,36 @@ $ sudo graylog-ctl reconfigure
 
 Wait some time till all services are restarted and running again. Afterwards you should be able to access Graylog with the new IP.
 
+Extend disk space
+-----------------
+All data is stored in one directory `/var/opt/graylog/data`. In order to extend the disk space mount a second drive
+on this path. Make sure to move old data to the new drive before and give the `graylog` user permissions to read and
+write here.
+
+Install Graylog server plugins
+------------------------------
+The Graylog plugin directory is located in `/opt/graylog/plugin/`. Just drop a JAR file there and restart the server
+with `graylog-ctl restart graylog-server` to load the plugin.
+
+Install Elasticsearch plugins
+-----------------------------
+Elasticsearch comes with a helper program to install additional plugins you can call it like this `sudo JAVA_HOME=/opt/graylog/embedded/jre /opt/graylog/elasticsearch/bin/plugin`
+
+Upgrade Graylog
+---------------
+Upgrading is currently in development. Please be careful here, the default behavior of the pakage was to remove all
+data during an upgrade process. Always perform a full backup or snapshot of the appliance before proceeding. Only upgrade
+if the release notes say the next version is a drop-in replacement. The following steps prevent the deletion of
+the data directory:
+
+```
+wget https://packages.graylog2.org/releases/graylog2-omnibus/ubuntu/graylog_latest.deb
+sudo rm /var/lib/dpkg/info/graylog.postrm
+sudo graylog-ctl stop
+sudo dpkg -G -i graylog_latest.deb
+sudo graylog-ctl reconfigure
+```
+
 Production readiness
 --------------------
 You can use this image for small production setups but please consider to harden the security of the box before.
