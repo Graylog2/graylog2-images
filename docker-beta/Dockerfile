@@ -25,6 +25,9 @@ EXPOSE 12201/udp
 EXPOSE 12900
 # etcd
 EXPOSE 4001
+# syslog
+EXPOSE 514
+EXPOSE 514/udp
 
 CMD /opt/graylog/embedded/bin/runsvdir-docker & \
     if [ ! -z "$GRAYLOG_PASSWORD" ]; then graylog-ctl set-admin-password $GRAYLOG_PASSWORD; fi && \
