@@ -5,7 +5,7 @@ AWS EC2 Images
 |---------|--------|-----|-------------|
 | 1.0.0  | us-east-1 | ami-ee194886 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-ee194886) |
 | 1.0.0  | us-west-1 | ami-05a74241 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-05a74241) |
-| 1.0.0  | us-west-2 | ami-a7426397 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-a7426397) |
+| 1.0.0  | us-west-2 | ami-a7426397 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-a7426397) |
 | 1.0.0  | eu-west-1 | ami-b9be2ace | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-b9be2ace) |
 | 1.0.0  | eu-central-1 | ami-d23e0ccf | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-d23e0ccf) |
 | 1.0.0  | ap-southeast-2 | ami-23601619 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-23601619) |
