@@ -25,6 +25,7 @@ permissions to perform an actual change so don't forget the `sudo`.
 | `sudo graylog-ctl set-admin-username <username>` | Set a different username for the admin user |
 | `sudo graylog-ctl set-email-config <smtp server> [--port=<smtp port> --user=<username> --password=<password>]` | Configure SMTP settings to send alert mails |
 | `sudo graylog-ctl set-timezone <zone acronym>` | Set Graylog's [timezone](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Make sure system time is also set correctly with `sudo dpkg-reconfigure tzdata` |
+| `sudo graylog-ctl enforce-ssl` | Enforce HTTPS for the web interface |
 
 After setting one or more of these options re-run
 
@@ -127,6 +128,13 @@ with `graylog-ctl restart graylog-server` to load the plugin.
 Install Elasticsearch plugins
 -----------------------------
 Elasticsearch comes with a helper program to install additional plugins you can call it like this `sudo JAVA_HOME=/opt/graylog/embedded/jre /opt/graylog/elasticsearch/bin/plugin`
+
+Install custom SSL certificates
+-------------------------------
+During the first `reconfigure` run self signed SSL certificates are generated. You can replace this
+certificate with your own to prevent security warnings in your browser. Just drop the key and
+combined certificate file here: `/opt/graylog/conf/nginx/ca/graylog.crt` respectively `/opt/graylog/conf/nginx/ca/graylog.key`.
+Afterwards restart nginx with `sudo graylog-ctl restart nginx`
 
 Upgrade Graylog
 ---------------
