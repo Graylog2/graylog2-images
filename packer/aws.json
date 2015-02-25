@@ -29,6 +29,11 @@
       "type": "shell",
       "script": "scripts/shell_environment.sh",
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
+    },
+    {
+      "type": "shell",
+      "script": "scripts/aws_cleanup.sh",
+      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     }
   ]
 }
