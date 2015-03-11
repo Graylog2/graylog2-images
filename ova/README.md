@@ -23,8 +23,9 @@ permissions to perform an actual change so don't forget the `sudo`.
 |---------|----------------------|
 | `sudo graylog-ctl set-admin-password <password>` | Set a new admin password |
 | `sudo graylog-ctl set-admin-username <username>` | Set a different username for the admin user |
-| `sudo graylog-ctl set-email-config <smtp server> [--port=<smtp port> --user=<username> --password=<password>]` | Configure SMTP settings to send alert mails |
+| `sudo graylog-ctl set-email-config <smtp server> [--port=<smtp port> --user=<username> --password=<password> --no-tls --no-ssl]` | Configure SMTP settings to send alert mails |
 | `sudo graylog-ctl set-timezone <zone acronym>` | Set Graylog's [timezone](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Make sure system time is also set correctly with `sudo dpkg-reconfigure tzdata` |
+| `sudo graylog-ctl set-retention --size=<Gb> OR --time=<hours> --indices=<number> [--journal=<Gb>]` | Configure message retention |
 | `sudo graylog-ctl enforce-ssl` | Enforce HTTPS for the web interface |
 
 After setting one or more of these options re-run
@@ -135,6 +136,35 @@ During the first `reconfigure` run self signed SSL certificates are generated. Y
 certificate with your own to prevent security warnings in your browser. Just drop the key and
 combined certificate file here: `/opt/graylog/conf/nginx/ca/graylog.crt` respectively `/opt/graylog/conf/nginx/ca/graylog.key`.
 Afterwards restart nginx with `sudo graylog-ctl restart nginx`
+
+Configure Message Retention
+---------------------------
+Graylog is keeping a defined amount of messages. It is possible to decide whether you want to have a set storage size or a set
+time period of messages. Additionally Graylog writes a so called Journal. This is used to buffer messages in case of a unreachable
+Elasticsearch backend. To configure those settings use the `set-retention` command:
+
+Retention by disk size:
+
+```
+sudo graylog-ctl set-retention --size=3 --indices=10
+```
+
+Indices will be rotated when they reach a size of 3Gb and Graylog will keep up to 10 indices, results in 30Gb maximum disk space.
+
+Retention by time:
+
+```
+sudo graylog-ctl set-retention --time=24  --indices=30
+```
+
+Indices will be rotated after 24 hours and 30 indices will be kept.
+
+Both commands can be extended with the `--journal` switch to set the maximum journal size in Gb:
+
+```
+sudo graylog-ctl set-retention --time=24  --indices=30 --journal=5
+```
+
 
 Upgrade Graylog
 ---------------
