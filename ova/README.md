@@ -147,6 +147,7 @@ Retention by disk size:
 
 ```
 sudo graylog-ctl set-retention --size=3 --indices=10
+sudo graylog-ctl reconfigure
 ```
 
 Indices will be rotated when they reach a size of 3Gb and Graylog will keep up to 10 indices, results in 30Gb maximum disk space.
@@ -155,6 +156,7 @@ Retention by time:
 
 ```
 sudo graylog-ctl set-retention --time=24  --indices=30
+sudo graylog-ctl reconfigure
 ```
 
 Indices will be rotated after 24 hours and 30 indices will be kept.
@@ -163,6 +165,7 @@ Both commands can be extended with the `--journal` switch to set the maximum jou
 
 ```
 sudo graylog-ctl set-retention --time=24  --indices=30 --journal=5
+sudo graylog-ctl reconfigure
 ```
 
 
