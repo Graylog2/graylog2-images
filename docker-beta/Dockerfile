@@ -31,5 +31,4 @@ EXPOSE 4001
 EXPOSE 514
 EXPOSE 514/udp
 
-CMD /opt/graylog/embedded/share/docker/docker-environment && \
-    /opt/graylog/embedded/share/docker/my_init
+CMD ["/opt/graylog/embedded/share/docker/my_init"]
