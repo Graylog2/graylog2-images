@@ -44,9 +44,19 @@ $ docker run -t -p 9000:9000 -p 12201:12201 -e GRAYLOG_PASSWORD=SeCuRePwD graylo
 | GRAYLOG_PASSWORD | Set admin password |
 | GRAYLOG_TIMEZONE | Set [timezone (TZ)](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones) you are in |
 | GRAYLOG_SMTP_SERVER | Hostname/IP address of your SMTP server for sending alert mails |
+| GRAYLOG_RETENTION | Configure how long or how many logs should be stored |
 
-SMTP_SERVER can take options for authentication, make sure to use an SSL port:
-GRAYLOG_SMTP_SERVER="mailserver.com --port=465 --user=username@mailserver.com --password=SecretPassword"
+SMTP_SERVER can take options for authentication, network port and SSL/TLS:
+
+`GRAYLOG2_SMTP_SERVER="mailserver.com --port=465 --user=username@mailserver.com --password=SecretPassword --no-tls --no-ssl"`
+
+RETENTION can be configured in two ways. 10 indices with a size of 3Gb each:
+
+`GRAYLOG_RETENTION="--size=3 --indices=10"`
+
+30 indices with logs from 24 hours each:
+
+`GRAYLOG_RETENTION="--time=24 --indices=30"`
 
 Persist data
 ------------
