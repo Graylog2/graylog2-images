@@ -6,8 +6,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
     apt-get install -y curl ntp ntpdate tzdata && \
     curl -O -L https://packages.graylog2.org/releases/graylog2-omnibus/ubuntu/graylog_latest.deb && \
-    dpkg -i graylog_beta.deb && \
-    rm graylog_beta.deb && \
+    dpkg -i graylog_latest.deb && \
+    rm graylog_latest.deb && \
     sed -i "0,/^\s*$/s//tail\ \-F\ \/var\/log\/graylog\/server\/current\ \&/" /etc/rc.local && \
     cp /opt/graylog/embedded/share/docker/01_run_graylogctl.sh /etc/my_init.d/ && \
     apt-get clean && \
