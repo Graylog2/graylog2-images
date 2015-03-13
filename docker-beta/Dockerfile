@@ -8,8 +8,8 @@ RUN apt-get update && \
     curl -O -L https://packages.graylog2.org/releases/graylog2-omnibus/ubuntu/graylog_beta.deb && \
     dpkg -i graylog_beta.deb && \
     rm graylog_beta.deb && \
-    sed -i "0,/^\s*$/s//tail\ \-F\ \/var\/log\/graylog\/server\/current\ \&/" /etc/rc.local && \
-    cp /opt/graylog/embedded/share/docker/01_run_graylogctl.sh /etc/my_init.d/ && \
+    sed -i "0,/^\s*$/s//\/opt\/graylog\/embedded\/share\/docker\/run_graylogctl\n/" /etc/rc.local && \
+    sed -i "0,/^\s*$/s//tail\ \-F\ \/var\/log\/graylog\/server\/current\ \&\n/" /etc/rc.local && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/*
 
