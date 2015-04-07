@@ -11,7 +11,9 @@ RUN apt-get update && \
     sed -i "0,/^\s*$/s//\/opt\/graylog\/embedded\/share\/docker\/run_graylogctl\n/" /etc/rc.local && \
     sed -i "0,/^\s*$/s//tail\ \-F\ \/var\/log\/graylog\/server\/current\ \&\n/" /etc/rc.local && \
     apt-get clean && \
-    rm -rf /tmp/* /var/tmp/*
+    rm -rf /tmp/* /var/tmp/* && \
+    ulimit -n 65536
+
 
 VOLUME /var/opt/graylog/data
 VOLUME /var/log/graylog
