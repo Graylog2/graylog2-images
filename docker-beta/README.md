@@ -48,7 +48,7 @@ $ docker run -t -p 9000:9000 -p 12201:12201 -e GRAYLOG_PASSWORD=SeCuRePwD graylo
 
 SMTP_SERVER can take options for authentication, network port and SSL/TLS:
 
-`GRAYLOG2_SMTP_SERVER="mailserver.com --port=465 --user=username@mailserver.com --password=SecretPassword --no-tls --no-ssl"`
+`GRAYLOG_SMTP_SERVER="mailserver.com --port=465 --user=username@mailserver.com --password=SecretPassword --no-tls --no-ssl"`
 
 RETENTION can be configured in two ways. 10 indices with a size of 3Gb each:
 
