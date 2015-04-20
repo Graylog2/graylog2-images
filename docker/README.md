@@ -66,6 +66,10 @@ In order to persist log data and configuration settings mount the Graylog data d
 $ docker run -t -p 9000:9000 -p 12201:12201 -v /graylog/data:/var/opt/graylog/data -v /graylog/logs:/var/log/graylog graylog2/allinone
 ```
 
+Please keep in mind that there are configuration options which are bound to the Graylog server node-id. E.g. inputs will not start when
+loaded from another Graylog instance. The best way is to stop and start the same container to make sure all configurations work like
+expected. A new container on old configuration data can produce problems.
+
 Other volumes to persist:
 
 | Path | Description |
