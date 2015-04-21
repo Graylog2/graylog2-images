@@ -23,11 +23,13 @@ The default login is Username: `admin` Password: `admin`.
 
 How to get log data in
 ----------------------
-You can create different kind of inputs under System->Inputs. You already exposed the default GELF port 12201 so it
-is a good idea to start a GELF TCP input there. Here is a [list](https://www.graylog.org/supported-sources) of available
-GELF integrations. To start another input you have to expose the right port e.g. to start a raw TCP input on port 5555
-add to your docker command the `-p 5555:5555` option.
-Then you can send raw text to Graylog like `echo 'first log message' | nc localhost 5555`
+You can create different kinds of inputs under System->Inputs, however you can only use ports that have been properly
+mapped to your docker container, otherwise data will not get through. You already exposed the default GELF port 12201, so 
+it is a good idea to start a GELF TCP input there. Here is a [list](https://www.graylog.org/supported-sources) of 
+available GELF integrations. To start another input you have to expose the right port e.g. to start a raw TCP input on 
+port 5555; stop your container and recreate it, whilst addpending `-p 5555:5555` to your run argument. Similarly, the 
+same can be done for UDP via appending `-p 5555:5555/udp` option. Then you can send raw text to Graylog like 
+`echo 'first log message' | nc localhost 5555`
 
 Additional options
 ------------------
