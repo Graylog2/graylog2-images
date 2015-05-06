@@ -44,19 +44,63 @@ $ docker run -t -p 9000:9000 -p 12201:12201 -e GRAYLOG_PASSWORD=SeCuRePwD graylo
 | Variable Name | Configuration Option |
 |---------------|----------------------|
 | GRAYLOG_PASSWORD | Set admin password |
+| GRAYLOG_USERNAME | Set username for admin user (default: admin) |
 | GRAYLOG_TIMEZONE | Set [timezone (TZ)](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones) you are in |
 | GRAYLOG_SMTP_SERVER | Hostname/IP address of your SMTP server for sending alert mails |
 | GRAYLOG_RETENTION | Configure how long or how many logs should be stored |
+| GRAYLOG_NODE_ID | Set server node ID (default: random) |
+| GRAYLOG_MASTER | IP address of a remote master container (see multi container setup) |
+| GRAYLOG_SERVER | Run only server components |
+| GRAYLOG_WEB | Run web interface only |
 
-SMTP_SERVER can take options for authentication, network port and SSL/TLS:
+Examples
+--------
 
-`GRAYLOG_SMTP_SERVER="mailserver.com --port=465 --user=username@mailserver.com --password=SecretPassword --no-tls --no-ssl"`
+Set an admin password:
 
-RETENTION can be configured in two ways. 10 indices with a size of 3Gb each:
+`GRAYLOG_PASSWORD=SeCuRePwD`
+
+Change admin username:
+
+`GRAYLOG_USERNAME=root`
+
+Set your local timezone:
+
+`GRAYLOG_TIMEZONE=Europe/Berlin`
+
+Set a SMTP server for alert e-mails:
+
+`GRAYLOG_SMTP_SERVER="mailserver.com"`
+
+Disable TLS/SSL for mail delivery:
+
+`GRAYLOG_SMTP_SERVER="mailserver.com --no-tls --no-ssl"`
+
+Set SMTP server with port, authentication and changed sender address
+
+`GRAYLOG_SMTP_SERVER="mailserver.com --port=465 --user=username@mailserver.com --password=SecretPassword --from-email=graylog@company.com"`
+
+Set a static server node ID:
+
+`GRAYLOG_NODE_ID=de305d54-75b4-431b-adb2-eb6b9e546014`
+
+Set a configuration master for linking multiple containers:
+
+`GRAYLOG_MASTER=192.168.3.15`
+
+Only start server services:
+
+`GRAYLOG_SERVER=true`
+
+Only run web interface:
+
+`GRAYLOG_WEB=true`
+
+Keep 30Gb of logs, distributed across 10 Elasticsearch indices
 
 `GRAYLOG_RETENTION="--size=3 --indices=10"`
 
-30 indices with logs from 24 hours each:
+Keep one month of logs, distributed across 30 indices with 24 hours of logs each:
 
 `GRAYLOG_RETENTION="--time=24 --indices=30"`
 
@@ -65,7 +109,7 @@ Persist data
 In order to persist log data and configuration settings mount the Graylog data directory outside the container:
 
 ```shell
-$ docker run -t -p 9000:9000 -p 12201:12201 -v /graylog/data:/var/opt/graylog/data -v /graylog/logs:/var/log/graylog graylog2/allinone
+$ docker run -t -p 9000:9000 -p 12201:12201 -e GRAYLOG_NODE_ID=some-rand-omeu-uidasnodeid -v /graylog/data:/var/opt/graylog/data -v /graylog/logs:/var/log/graylog graylog2/allinone
 ```
 
 Please keep in mind that there are configuration options which are bound to the Graylog server node-id. E.g. inputs will not start when
