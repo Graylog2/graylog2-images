@@ -3,6 +3,8 @@ MAINTAINER Marius Sturm <hello@torch.sh>
 
 ENV DEBIAN_FRONTEND noninteractive
 
+ENV JAVA_HOME /opt/graylog/embedded/jre
+
 RUN apt-get update && \
     apt-get install -y curl ntp ntpdate tzdata && \
     curl -O -L https://packages.graylog2.org/releases/graylog2-omnibus/ubuntu/graylog_beta.deb && \
