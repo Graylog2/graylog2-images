@@ -18,9 +18,11 @@ RUN apt-get update && \
 VOLUME /var/opt/graylog/data
 VOLUME /var/log/graylog
 VOLUME /opt/graylog/plugin
+VOLUME /opt/graylog/conf/nginx/ca
 
 # web interface
 EXPOSE 9000
+EXPOSE 443
 # gelf tcp
 EXPOSE 12201
 # gelf udp
