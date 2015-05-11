@@ -3,12 +3,12 @@ AWS EC2 Images
 
 | Version | Region | AMI | Launch Wizard |
 |---------|--------|-----|-------------|
-| 1.0.2  | us-east-1 | ami-ec686484 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-ec686484) |
-| 1.0.2  | us-west-1 | ami-25e90561 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-25e90561) |
-| 1.0.2  | us-west-2 | ami-7fb7804f | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-7fb7804f) |
-| 1.0.2  | eu-west-1 | ami-29f4985e | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-29f4985e) |
-| 1.0.2  | eu-central-1 | ami-484f7055 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-484f7055) |
-| 1.0.2  | ap-southeast-2 | ami-1b671b21 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-1b671b21) |
+| 1.0.2  | us-east-1 | ami-18e6f770 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-18e6f770) |
+| 1.0.2  | us-west-1 | ami-51f31d15 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-51f31d15) |
+| 1.0.2  | us-west-2 | ami-9f8cbcaf | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-9f8cbcaf) |
+| 1.0.2  | eu-west-1 | ami-bfdbb0c8 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-bfdbb0c8) |
+| 1.0.2  | eu-central-1 | ami-ec82bdf1 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-ec82bdf1) |
+| 1.0.2  | ap-southeast-2 | ami-9797e8ad | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-9797e8ad) |
 | 1.0.1  | us-east-1 | ami-0e406166 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-0e406166) |
 | 1.0.1  | us-west-1 | ami-c97b9c8d | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-c97b9c8d) |
 | 1.0.1  | us-west-2 | ami-b56d4085 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-b56d4085) |
