@@ -135,6 +135,24 @@ Start the web interface in a second container and give the host address as `mast
 $ docker run -t -p 9000:9000 -e GRAYLOG_MASTER=<host IP address> -e GRAYLOG_WEB=true graylog2/allinone-beta
 ```
 
+SSL Support
+-----------
+Graylog comes with a pre-configured SSL configuration. On start-up time a self-signed certificate is generated and used on port
+443 to provide the web interface via HTTPS. Simply expose the port like this:
+
+```shell
+docker run -t -p 443:443 graylog2/allinone
+```
+
+It is also possible to swap the certificate with your own files. To achieve this mount the CA directory to the Docker host:
+
+```shell
+docker run -t -p 443:443 -v /somepath/ca:/opt/graylog/conf/nginx/ca graylog2/allinone
+```
+
+If you put a file called `/somepath/ca/graylog.crt` respectively `/somepath/ca/graylog.key` in place before starting the container, Graylog
+will pick up those files and make use of your own certificate.
+
 Build
 -----
 To build the image from scratch run
