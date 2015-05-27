@@ -112,9 +112,7 @@ In order to persist log data and configuration settings mount the Graylog data d
 $ docker run -t -p 9000:9000 -p 12201:12201 -e GRAYLOG_NODE_ID=some-rand-omeu-uidasnodeid -e GRAYLOG_SERVER_SECRET=somesecretsaltstring -v /graylog/data:/var/opt/graylog/data -v /graylog/logs:/var/log/graylog graylog2/allinone
 ```
 
-Please keep in mind that there are configuration options which are bound to the Graylog server node-id. E.g. inputs will not start when
-loaded from another Graylog instance. The best way is to stop and start the same container to make sure all configurations work like
-expected. A new container on old configuration data can produce problems.
+Please make sure that you always use the same node-ID and server secret. Otherwise your users can't login or inputs will not be started after creating a new container on old data.
 
 Other volumes to persist:
 
