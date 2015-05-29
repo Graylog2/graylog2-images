@@ -11,7 +11,7 @@ Graylog *OVA* appliance
   * Open the Graylog web interface with the displayed URL from the console
   * Login with user `admin`, password `admin`
 
-You can also test pre-releases with our [beta](https://packages.graylog2.org/releases/graylog2-omnibus/ova/graylog-beta.ova) branch of the image - current version 1.1.0.beta.3
+You can also test pre-releases with our [beta](https://packages.graylog2.org/releases/graylog2-omnibus/ova/graylog-beta.ova) branch of the image - current version 1.1.0-rc.1
 
 ### Configuration
 
