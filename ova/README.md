@@ -3,7 +3,7 @@ Graylog *OVA* appliance
 
 ### Usage
 
-  * Download the image [here](https://packages.graylog2.org/releases/graylog2-omnibus/ova/graylog.ova) - current version is 1.0.2
+  * Download the image [here](https://packages.graylog2.org/releases/graylog2-omnibus/ova/graylog.ova) - current version is 1.1.0
   * For VMware Player/Fusion right click on the image and select 'Run with VMware'
   * For Virtualbox select File->Import Appliance
   * If not automatically, start the VM
@@ -192,5 +192,5 @@ You can use this image for small production setups but please consider to harden
  * Disable remote password logins in `/etc/ssh/sshd_config` and deploy proper ssh keys
  * Seperate the box network-wise from the outside, otherwise Elasticsearch can be reached by anyone
 
-If you want to create your own customised setup take a look at our [Puppet](https://github.com/Graylog2/graylog2-puppet),
-[Chef](https://github.com/Graylog2/graylog2-cookbook) or [Ansible](https://github.com/Graylog2/graylog-ansible-role) modules.
+If you want to create your own customised setup take a look at our [Puppet](https://github.com/Graylog2/graylog2-puppet)
+and [Chef](https://github.com/Graylog2/graylog2-cookbook) modules.
