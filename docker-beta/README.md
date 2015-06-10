@@ -47,9 +47,11 @@ $ docker run -t -p 9000:9000 -p 12201:12201 -e GRAYLOG_PASSWORD=SeCuRePwD graylo
 | GRAYLOG_SMTP_SERVER | Hostname/IP address of your SMTP server for sending alert mails |
 | GRAYLOG_RETENTION | Configure how long or how many logs should be stored |
 | GRAYLOG_NODE_ID | Set server node ID (default: random) |
+| GRAYLOG_SERVER_SECRET | Set salt for encryption |
 | GRAYLOG_MASTER | IP address of a remote master container (see multi container setup) |
 | GRAYLOG_SERVER | Run only server components |
 | GRAYLOG_WEB | Run web interface only |
+| ES_MEMORY | Set memory used by Elasticsearch (syntax: 1024m). Defaults to 60% of host memory |
 
 Set an admin password:
 
@@ -98,6 +100,10 @@ Keep 30Gb of logs, distributed across 10 Elasticsearch indices
 Keep one month of logs, distributed across 30 indices with 24 hours of logs each:
 
 `GRAYLOG_RETENTION="--time=24 --indices=30"`
+
+Limit amount of memory Elasticsearch is using
+
+`ES_MEMORY=2g`
 
 Persist data
 ------------
