@@ -181,14 +181,11 @@ sudo graylog-ctl reconfigure
 
 Upgrade Graylog
 ---------------
-Upgrading is currently in development. Please be careful here, the default behavior of the pakage was to remove all
-data during an upgrade process. Always perform a full backup or snapshot of the appliance before proceeding. Only upgrade
-if the release notes say the next version is a drop-in replacement. The following steps prevent the deletion of
-the data directory:
+Always perform a full backup or snapshot of the appliance before proceeding. Only upgrade
+if the release notes say the next version is a drop-in replacement.
 
 ```
 wget https://packages.graylog2.org/releases/graylog2-omnibus/ubuntu/graylog_latest.deb
-sudo rm /var/lib/dpkg/info/graylog.postrm
 sudo graylog-ctl stop
 sudo dpkg -G -i graylog_latest.deb
 sudo graylog-ctl reconfigure
