@@ -209,7 +209,7 @@ You can use this image for small production setups but please consider to harden
 
  * Set another password for the default `ubuntu` user
  * Disable remote password logins in `/etc/ssh/sshd_config` and deploy proper ssh keys
- * Seperate the box network-wise from the outside, otherwise Elasticsearch can be reached by anyone
+ * Separate the box network-wise from the outside, otherwise Elasticsearch can be reached by anyone
 
 If you want to create your own customised setup take a look at our [Puppet](https://github.com/Graylog2/graylog2-puppet),
 [Chef](https://github.com/Graylog2/graylog2-cookbook) or [Ansible](https://github.com/Graylog2/graylog-ansible-role) modules.
