@@ -8,7 +8,7 @@
     "ami_name": "graylog-1.1.4-{{timestamp}}",
     "ami_description": "Full-stack installation of Graylog - maintained by Graylog, Inc.",
     "ami_groups": ["all"],
-    "ami_regions": ["us-west-1", "us-west-2", "eu-west-1", "eu-central-1", "ap-southeast-2"],
+    "ami_regions": ["us-west-1", "us-west-2", "eu-west-1", "ap-southeast-2"],
     "tags": {
       "OS_Version": "Ubuntu",
       "Release": "Latest"
