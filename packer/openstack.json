@@ -9,7 +9,7 @@
     "iso_checksum_type": "md5",
     "disk_size": 6000,
     "format": "qcow2",
-    "accelerator": "none",
+    "accelerator": "kvm",
     "disk_interface": "virtio",
     "net_device": "i82551",
     "ssh_username": "ubuntu",
