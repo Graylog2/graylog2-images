@@ -9,6 +9,7 @@
     "iso_checksum": "9e5fecc94b3925bededed0fdca1bd417",
     "iso_checksum_type": "md5",
     "disk_size": 20000,
+    "hard_drive_interface": "scsi",
     "ssh_username": "ubuntu",
     "ssh_password": "ubuntu",
     "ssh_wait_timeout": "20m",
