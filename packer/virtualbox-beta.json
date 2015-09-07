@@ -31,7 +31,8 @@
       ["modifyvm", "{{.Name}}", "--natpf1", "tcp9000,tcp,,9000,,9000"],
       ["modifyvm", "{{.Name}}", "--natpf1", "tcp12900,tcp,,12900,,12900"],
       ["modifyvm", "{{.Name}}", "--natpf1", "tcp12201,tcp,,12201,,12201"],
-      ["modifyvm", "{{.Name}}", "--natpf1", "udp12201,udp,,12201,,12201"]
+      ["modifyvm", "{{.Name}}", "--natpf1", "udp12201,udp,,12201,,12201"],
+      ["storagectl", "{{.Name}}", "--name", "IDE Controller", "--remove"]
     ]
   }],
   "provisioners": [
