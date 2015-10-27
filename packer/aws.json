@@ -5,10 +5,10 @@
     "source_ami": "ami-9a562df2",
     "instance_type": "m3.medium",
     "ssh_username": "ubuntu",
-    "ami_name": "graylog-1.2.1-{{timestamp}}",
+    "ami_name": "graylog-1.2.2-{{timestamp}}",
     "ami_description": "Full-stack installation of Graylog - maintained by Graylog, Inc.",
     "ami_groups": ["all"],
-    "ami_regions": ["us-west-1", "us-west-2", "eu-west-1", "ap-southeast-1", "ap-southeast-2"],
+    "ami_regions": ["us-west-1", "us-west-2", "eu-west-1", "eu-central-1", "ap-southeast-1", "ap-southeast-2"],
     "tags": {
       "OS_Version": "Ubuntu",
       "Release": "Latest"
