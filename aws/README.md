@@ -34,4 +34,10 @@ AWS EC2 Images
 | 1.1.6  | ap-southeast-1 | ami-1c4f404e | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LaunchInstanceWizard:ami=ami-1c4f404e) |
 | 1.1.6  | ap-southeast-2 | ami-55dd9d6f | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-55dd9d6f) |
 
+
+### Update Packages
+
+  * Follow update instructions [here](http://docs.graylog.org/en/1.2/pages/installation/graylog_ctl.html#upgrade-graylog)
+  * View all Graylog versions available for update [here](https://packages.graylog2.org/omnibus)
+
 Detailed documentation can be found [here](http://docs.graylog.org/en/latest/pages/installation/aws.html).
