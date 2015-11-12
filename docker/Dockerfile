@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.16
+FROM phusion/baseimage:0.9.17
 MAINTAINER Marius Sturm <hello@torch.sh>
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -12,6 +12,7 @@ RUN apt-get update && \
     rm graylog_latest.deb && \
     sed -i "0,/^\s*$/s//\/opt\/graylog\/embedded\/share\/docker\/run_graylogctl\n/" /etc/rc.local && \
     sed -i "0,/^\s*$/s//tail\ \-F\ \/var\/log\/graylog\/server\/current\ \&\n/" /etc/rc.local && \
+    echo 'GRAYLOG_INSTALLATION_SOURCE="docker"' > /opt/graylog/embedded/share/graylog/installation-source.sh && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/*
 

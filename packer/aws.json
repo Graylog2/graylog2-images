@@ -32,6 +32,11 @@
     },
     {
       "type": "shell",
+      "script": "scripts/installation_source_ami.sh",
+      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
+    },
+    {
+      "type": "shell",
       "script": "scripts/aws_cleanup.sh",
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     }
