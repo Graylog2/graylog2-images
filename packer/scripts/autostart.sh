@@ -1,7 +1,7 @@
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh -e
 
-IP=$(hostname -I)
+IP=$(hostname -I|awk '{print $1}')
 if [ -z "$IP" ]; then
   echo "Your appliance came up without a configured IP address. Graylog is probable not running correctly!" > /etc/issue
 else
