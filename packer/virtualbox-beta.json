@@ -37,11 +37,10 @@
     {
       "type": "shell",
       "scripts": ["scripts/prepare.sh",
-                  "scripts/install_beta.sh",
+                  "scripts/install_beta_ova.sh",
                   "scripts/install_vmware.sh",
                   "scripts/autostart.sh",
                   "scripts/shell_environment.sh",
-                  "scripts/installation_source_ova.sh",
                   "scripts/cleanup.sh"
       ],
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"

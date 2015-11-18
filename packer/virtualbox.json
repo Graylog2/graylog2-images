@@ -41,7 +41,7 @@
     },
     {
       "type": "shell",
-      "script": "scripts/install.sh",
+      "script": "scripts/install_ova.sh",
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     },
     {
@@ -57,11 +57,6 @@
     {
       "type": "shell",
       "script": "scripts/shell_environment.sh",
-      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
-    },
-    {
-      "type": "shell",
-      "script": "scripts/installation_source_ova.sh",
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     },
     {
