@@ -12,7 +12,7 @@ RUN apt-get update && \
     rm graylog_beta.deb && \
     sed -i "0,/^\s*$/s//\/opt\/graylog\/embedded\/share\/docker\/run_graylogctl\n/" /etc/rc.local && \
     sed -i "0,/^\s*$/s//tail\ \-F\ \/var\/log\/graylog\/server\/current\ \&\n/" /etc/rc.local && \
-    install -d -o graylog -g graylog /opt/graylog/embedded/share/graylog && \
+    install -d /opt/graylog/embedded/share/graylog && \
     echo 'GRAYLOG_INSTALLATION_SOURCE="docker"' > /opt/graylog/embedded/share/graylog/installation-source.sh && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/*
