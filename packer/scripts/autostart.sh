@@ -1,6 +1,14 @@
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh -e
 
+# wait up to 10s for getting an IPv4 address
+for i in `seq 1 10`; do
+  if [ $(ip add sh dev eth0 2> /dev/null | grep 'inet ' | wc -l) -ne 0 ]; then
+     break
+  fi
+  sleep 1
+done
+
 IP=$(hostname -I|awk '{print $1}')
 if [ -z "$IP" ]; then
   echo "Your appliance came up without a configured IP address. Graylog is probable not running correctly!" > /etc/issue
