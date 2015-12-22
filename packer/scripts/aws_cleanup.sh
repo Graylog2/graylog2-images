@@ -17,4 +17,5 @@ rm -rf /tmp/* /var/tmp/*
 rm -f /var/log/wtmp /var/log/btmp
 rm -f /root/.ssh/authorized_keys
 rm -f /home/ubuntu/.ssh/authorized_keys
+rm -f /var/lib/cloud
 history -c
