@@ -7,7 +7,7 @@ AWS EC2 Images
 |---------|--------|-----|-------------|
 | 1.3.3  | us-east-1 | ami-e4df858e | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-e4df858e) |
 | 1.3.3  | us-west-1 | ami-643e4a04 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-643e4a04) |
-| 1.3.3  | us-west-2 | ami-27c4de46 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-27c4de46) |
+| 1.3.3  | us-west-2 | ami-27c4de46 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-27c4de46) |
 | 1.3.3  | eu-west-1 | ami-13a70c60 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-13a70c60) |
 | 1.3.3  | eu-central-1 | ami-64b3ad08 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-64b3ad08) |
 | 1.3.3  | ap-southeast-1 | ami-3ea9655d | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LaunchInstanceWizard:ami=ami-3ea9655d) |
