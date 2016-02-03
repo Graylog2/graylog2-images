@@ -7,7 +7,7 @@ ENV JAVA_HOME /opt/graylog/embedded/jre
 
 RUN apt-get update && \
     apt-get install -y curl ntp ntpdate tzdata && \
-    curl -O -L https://packages.graylog2.org/releases/graylog2-omnibus/ubuntu/graylog_beta.deb && \
+    curl -O -L https://packages.graylog2.org/releases/graylog-omnibus/ubuntu/graylog_beta.deb && \
     dpkg -i graylog_beta.deb && \
     rm graylog_beta.deb && \
     sed -i "0,/^\s*$/s//\/opt\/graylog\/embedded\/share\/docker\/run_graylogctl\n/" /etc/rc.local && \

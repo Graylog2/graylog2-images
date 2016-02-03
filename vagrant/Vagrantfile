@@ -14,7 +14,7 @@ Vagrant.configure(2)  do |config|
   $script = <<SCRIPT
     apt-get update
     echo 'Going to download Graylog...'
-    curl -S -s -L -O https://packages.graylog2.org/releases/graylog2-omnibus/ubuntu/graylog_latest.deb
+    curl -S -s -L -O https://packages.graylog2.org/releases/graylog-omnibus/ubuntu/graylog_latest.deb
     dpkg -i graylog_latest.deb
     rm graylog_latest.deb
     graylog-ctl reconfigure
