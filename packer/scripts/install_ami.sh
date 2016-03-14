@@ -2,6 +2,14 @@
 
 set -x
 
+if [ -z "$GIT_TAG_NAME" ] && [ -z "$OMNIBUS_VERSION" ] ; then
+  echo "No Git tag nor Omnibus version set, exiting."
+  exit 1
+else
+  PACKAGE_VERSION=${OMNIBUS_VERSION:-$GIT_TAG_NAME}
+fi
+echo "Building image for Graylog $PACKAGE_VERSION"
+
 apt-get update
 apt-get dist-upgrade -y
 apt-get install -y curl wget rsync vim man sudo avahi-autoipd

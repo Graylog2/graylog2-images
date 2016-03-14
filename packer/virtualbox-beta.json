@@ -1,6 +1,7 @@
 {
   "variables": {
-    "git_tag": "{{env `GIT_TAG_NAME`}}"
+    "git_tag": "{{env `GIT_TAG_NAME`}}",
+    "omnibus_version": "{{env `OMNIBUS_VERSION`}}"
   },
   "builders": [{
     "type": "virtualbox-iso",
@@ -39,7 +40,7 @@
   "provisioners": [
     {
       "type": "shell",
-      "environment_vars": ["GIT_TAG_NAME={{user `git_tag`}}"],
+      "environment_vars": ["GIT_TAG_NAME={{user `git_tag`}}", "OMNIBUS_VERSION={{user `omnibus_version`}}"],
       "scripts": ["scripts/prepare.sh",
                   "scripts/install_beta_ova.sh",
                   "scripts/install_vmware.sh",

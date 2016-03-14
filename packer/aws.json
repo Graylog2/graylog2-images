@@ -1,6 +1,7 @@
 {
   "variables": {
-    "git_tag": "{{env `GIT_TAG_NAME`}}"
+    "git_tag": "{{env `GIT_TAG_NAME`}}",
+    "omnibus_version": "{{env `OMNIBUS_VERSION`}}"
   },
   "builders": [{
     "type": "amazon-ebs",
@@ -21,7 +22,7 @@
     {
       "type": "shell",
       "script": "scripts/install_ami.sh",
-      "environment_vars": ["GIT_TAG_NAME={{user `git_tag`}}"],
+      "environment_vars": ["GIT_TAG_NAME={{user `git_tag`}}", "OMNIBUS_VERSION={{user `omnibus_version`}}"],
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     },
     {
