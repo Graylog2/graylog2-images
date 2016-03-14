@@ -1,6 +1,6 @@
 {
   "variables": {
-    "git_tag": "{{env `GIT_TAG_NAME`}}",
+    "git_tag": "{{env `GIT_TAG_NAME`}}"
   },
   "builders": [{
     "type": "amazon-ebs",
@@ -21,6 +21,7 @@
     {
       "type": "shell",
       "script": "scripts/install_ami.sh",
+      "environment_vars": ["GIT_TAG_NAME={{user `git_tag`}}"],
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     },
     {

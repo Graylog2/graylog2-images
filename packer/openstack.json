@@ -1,4 +1,7 @@
 {
+  "variables": {
+    "git_tag": "{{env `GIT_TAG_NAME`}}"
+  },
   "builders": [{
     "type": "qemu",
     "qemuargs": [["-m", "2048M"]],
@@ -37,6 +40,7 @@
     {
       "type": "shell",
       "script": "scripts/install_qcow.sh",
+      "environment_vars": ["GIT_TAG_NAME={{user `git_tag`}}"],
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     },
     {

@@ -1,4 +1,7 @@
 {
+  "variables": {
+    "git_tag": "{{env `GIT_TAG_NAME`}}"
+  },
   "builders": [{
     "type": "virtualbox-iso",
     "format": "ovf",
@@ -36,6 +39,7 @@
   "provisioners": [
     {
       "type": "shell",
+      "environment_vars": ["GIT_TAG_NAME={{user `git_tag`}}"],
       "scripts": ["scripts/prepare.sh",
                   "scripts/install_beta_ova.sh",
                   "scripts/install_vmware.sh",

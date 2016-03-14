@@ -1,4 +1,7 @@
 {
+  "variables": {
+    "git_tag": "{{env `GIT_TAG_NAME`}}"
+  },
   "builders": [{
     "type": "virtualbox-iso",
     "format": "ovf",
@@ -41,6 +44,7 @@
     },
     {
       "type": "shell",
+      "environment_vars": ["GIT_TAG_NAME={{user `git_tag`}}"],
       "script": "scripts/install_ova.sh",
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     },
