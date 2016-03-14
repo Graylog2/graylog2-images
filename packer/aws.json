@@ -21,23 +21,12 @@
   "provisioners": [
     {
       "type": "shell",
-      "script": "scripts/install_ami.sh",
+      "scripts": ["scripts/install_ami.sh",
+                  "scripts/aws_hostname.sh",
+                  "scripts/shell_environment.sh",
+                  "scripts/aws_cleanup.sh
+      ],
       "environment_vars": ["GIT_TAG_NAME={{user `git_tag`}}", "OMNIBUS_VERSION={{user `omnibus_version`}}"],
-      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
-    },
-    {
-      "type": "shell",
-      "script": "scripts/aws_hostname.sh",
-      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
-    },
-    {
-      "type": "shell",
-      "script": "scripts/shell_environment.sh",
-      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
-    },
-    {
-      "type": "shell",
-      "script": "scripts/aws_cleanup.sh",
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     }
   ]

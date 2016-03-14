@@ -40,7 +40,6 @@
   "provisioners": [
     {
       "type": "shell",
-      "environment_vars": ["GIT_TAG_NAME={{user `git_tag`}}", "OMNIBUS_VERSION={{user `omnibus_version`}}"],
       "scripts": ["scripts/prepare.sh",
                   "scripts/install_beta_ova.sh",
                   "scripts/install_vmware.sh",
@@ -48,6 +47,7 @@
                   "scripts/shell_environment.sh",
                   "scripts/cleanup.sh"
       ],
+      "environment_vars": ["GIT_TAG_NAME={{user `git_tag`}}", "OMNIBUS_VERSION={{user `omnibus_version`}}"],
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     }
   ]

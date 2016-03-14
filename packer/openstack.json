@@ -35,28 +35,13 @@
   "provisioners": [
     {
       "type": "shell",
-      "script": "scripts/prepare.sh",
-      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
-    },
-    {
-      "type": "shell",
-      "script": "scripts/install_qcow.sh",
+      "scripts": ["scripts/prepare.sh",
+                  "scripts/install_qcow.sh",
+                  "scripts/cloud-init.sh",
+                  "scripts/shell_environment.sh",
+                  "scripts/cleanup.sh"
+      ],
       "environment_vars": ["GIT_TAG_NAME={{user `git_tag`}}", "OMNIBUS_VERSION={{user `omnibus_version`}}"],
-      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
-    },
-    {
-      "type": "shell",
-      "script": "scripts/cloud-init.sh",
-      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
-    },
-    {
-      "type": "shell",
-      "script": "scripts/shell_environment.sh",
-      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
-    },
-    {
-      "type": "shell",
-      "script": "scripts/cleanup.sh",
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     }
   ]
