@@ -1,6 +1,10 @@
 Openstack Graylog Image
 ========================
 
+### Download
+
+  * Stable branch (1.3.3): [graylog.ova](https://packages.graylog2.org/releases/graylog-omnibus/qcow2/graylog-1.3.3-2.qcow2.gz)
+
 Detailed documentation can be found [here](http://docs.graylog.org/en/latest/pages/installation/openstack.html).
 
 ### Update Packages
