@@ -1,7 +1,6 @@
 {
   "variables": {
-    "git_tag": "{{env `GIT_TAG_NAME`}}",
-    "omnibus_version": "{{env `OMNIBUS_VERSION`}}"
+    "package_version": "{{env `PACKAGE_VERSION`}}"
   },
   "builders": [{
     "type": "amazon-ebs",
@@ -9,7 +8,7 @@
     "source_ami": "ami-9a562df2",
     "instance_type": "m3.medium",
     "ssh_username": "ubuntu",
-    "ami_name": "graylog-{{user `git_tag`}}",
+    "ami_name": "graylog-{{user `package_version`}}",
     "ami_description": "Full-stack installation of Graylog - maintained by Graylog, Inc.",
     "ami_groups": ["all"],
     "ami_regions": ["us-west-1", "us-west-2", "eu-west-1", "eu-central-1", "ap-southeast-1", "ap-southeast-2", "sa-east-1"],
@@ -26,7 +25,7 @@
                   "scripts/shell_environment.sh",
                   "scripts/aws_cleanup.sh
       ],
-      "environment_vars": ["GIT_TAG_NAME={{user `git_tag`}}", "OMNIBUS_VERSION={{user `omnibus_version`}}"],
+      "environment_vars": ["PACKAGE_VERSION={{user `package_version`}}"],
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
     }
   ]
