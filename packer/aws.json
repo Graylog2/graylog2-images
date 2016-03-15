@@ -23,7 +23,7 @@
       "scripts": ["scripts/install_ami.sh",
                   "scripts/aws_hostname.sh",
                   "scripts/shell_environment.sh",
-                  "scripts/aws_cleanup.sh
+                  "scripts/aws_cleanup.sh"
       ],
       "environment_vars": ["PACKAGE_VERSION={{user `package_version`}}"],
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
