@@ -1,7 +1,8 @@
 FROM java:8-jre
 
+ARG GRAYLOG_VERSION
+
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
-ENV GRAYLOG_VERSION $GRAYLOG_VERSION
 ENV GRAYLOG_SERVER_JAVA_OPTS "-Xms1g -Xmx2g -XX:NewRatio=1 -XX:MaxMetaspaceSize=256m -server -XX:+ResizeTLAB -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC -XX:-OmitStackTraceInFastThrow"
 ENV GOSU_VERSION 1.7
 
@@ -25,7 +26,7 @@ RUN set -x \
   && addgroup --gid 1100 graylog \
   && adduser --disabled-password --disabled-login --gecos '' --uid 1100 --gid 1100 graylog \
   && mkdir /usr/share/graylog \
-  && wget -O /usr/share/graylog.tgz "https://packages.graylog2.org/releases/graylog/graylog-$GRAYLOG_VERSION.tgz" \
+  && wget -O /usr/share/graylog.tgz "https://packages.graylog2.org/releases/graylog/graylog-${GRAYLOG_VERSION}.tgz" \
   && tar xfz /usr/share/graylog.tgz --strip-components=1 -C /usr/share/graylog \
   && chown -R graylog:graylog /usr/share/graylog \
   && rm /usr/share/graylog.tgz
