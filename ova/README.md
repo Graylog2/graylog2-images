@@ -1,6 +1,10 @@
 Graylog *OVA* appliance
 =======================
 
+### Dependencies
+
+  * 64bit host system with Virtualbox/VMWare/XenServer hypervisor
+
 ### Download
 
   * Stable branch (1.3.4): [graylog.ova](https://packages.graylog2.org/releases/graylog-omnibus/ova/graylog-1.3.4-1.ova)
