@@ -48,4 +48,4 @@ docker run -t \
         -e GRAYLOG_TIMEZONE=EST5EDT     \
         --link graylog-mongo:mongo      \
         --link graylog-es:elasticsearch \
-        graylog2/server:2.0.0-beta.3-1
+        graylog2/server:2.0.0-rc.1-1
