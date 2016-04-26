@@ -1,40 +1,60 @@
-FROM phusion/baseimage:0.9.17
-MAINTAINER Marius Sturm <hello@torch.sh>
+FROM java:8-jre
 
-ENV DEBIAN_FRONTEND noninteractive
+ARG GRAYLOG_VERSION
 
-ENV JAVA_HOME /opt/graylog/embedded/jre
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
+ENV GRAYLOG_SERVER_JAVA_OPTS "-Xms1g -Xmx2g -XX:NewRatio=1 -XX:MaxMetaspaceSize=256m -server -XX:+ResizeTLAB -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC -XX:-OmitStackTraceInFastThrow"
+ENV GOSU_VERSION 1.7
 
-RUN apt-get update && \
-    apt-get install -y curl ntp ntpdate tzdata && \
-    curl -O -L https://packages.graylog2.org/releases/graylog-omnibus/ubuntu/graylog_latest.deb && \
-    dpkg -i graylog_latest.deb && \
-    rm graylog_latest.deb && \
-    sed -i "0,/^\s*$/s//\/opt\/graylog\/embedded\/share\/docker\/run_graylogctl\n/" /etc/rc.local && \
-    sed -i "0,/^\s*$/s//tail\ \-F\ \/var\/log\/graylog\/server\/current\ \&\n/" /etc/rc.local && \
-    install -d /opt/graylog/embedded/share/graylog && \
-    echo 'GRAYLOG_INSTALLATION_SOURCE="docker"' > /opt/graylog/embedded/share/graylog/installation-source.sh && \
-    apt-get clean && \
-    rm -rf /tmp/* /var/tmp/*
+RUN set -x \
+  && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
+  && wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc" \
+  && export GNUPGHOME="$(mktemp -d)" \
+  && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
+  && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
+  && rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
+  && chmod +x /usr/local/bin/gosu \
+  && gosu nobody true
 
-VOLUME /var/opt/graylog/data
-VOLUME /var/log/graylog
-VOLUME /opt/graylog/plugin
-VOLUME /opt/graylog/conf/nginx/ca
 
-# web interface
-EXPOSE 9000
-EXPOSE 443
-# gelf tcp
-EXPOSE 12201
-# gelf udp
-EXPOSE 12201/udp
-# rest api
-EXPOSE 12900
-# etcd
-EXPOSE 4001
-# syslog
-EXPOSE 514
-EXPOSE 514/udp
+RUN set -x \
+  && apt-get update \
+  && apt-get dist-upgrade -y \
+  && rm -rf /var/lib/apt/lists/*
 
-CMD ["/opt/graylog/embedded/share/docker/my_init"]
+RUN set -x \
+  && addgroup --gid 1100 graylog \
+  && adduser --disabled-password --disabled-login --gecos '' --uid 1100 --gid 1100 graylog \
+  && mkdir /usr/share/graylog \
+  && wget -O /usr/share/graylog.tgz "https://packages.graylog2.org/releases/graylog/graylog-${GRAYLOG_VERSION}.tgz" \
+  && tar xfz /usr/share/graylog.tgz --strip-components=1 -C /usr/share/graylog \
+  && chown -R graylog:graylog /usr/share/graylog \
+  && rm /usr/share/graylog.tgz
+
+ENV PATH /usr/share/graylog/bin:$PATH
+WORKDIR /usr/share/graylog
+
+RUN set -ex \
+  && for path in \
+    ./data/journal \
+    ./data/log \
+    ./data/plugin \
+    ./data/config \
+    ./data/config/scripts \
+  ; do \
+    mkdir -p "$path"; \
+    chown -R graylog:graylog "$path"; \
+  done
+
+RUN set -x \
+  && cp ./plugin/* ./data/plugin/
+
+COPY config ./data/config
+
+VOLUME ./data
+
+COPY docker-entrypoint.sh /
+
+EXPOSE 9000 12900
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["graylog"]
