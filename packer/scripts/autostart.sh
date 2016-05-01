@@ -33,7 +33,7 @@ EOF
 cat > /etc/update-motd.d/10-help-text <<'EOF'
 #!/bin/sh
 
-URL="http://docs.graylog.org/en/latest/pages/installation.html#virtual-machine-appliances"
+URL="http://docs.graylog.org/en/latest/pages/installation/virtual_machine_appliances.html"
 
 printf "\n * Documentation:  %s\n" "$URL"
 EOF
