@@ -8,7 +8,13 @@ fi
 
 # Start Graylog server
 if [ "$1" = 'graylog' -a "$(id -u)" = '0' ]; then
-  set -- gosu graylog $JAVA_HOME/bin/java $GRAYLOG_SERVER_JAVA_OPTS \
+  for d in journal log plugin config config/scripts; do
+    dir=/usr/share/graylog/data/$d
+    if [ "$(stat --format='%U:%G' $dir)" != 'graylog:graylog' ]; then
+      chown -R graylog:graylog "$dir"
+    fi
+  done
+  set -- gosu graylog "$JAVA_HOME/bin/java" $GRAYLOG_SERVER_JAVA_OPTS \
       -jar \
       -Dlog4j.configuration=file:///usr/share/graylog/data/config/log4j2.xml \
       -Djava.library.path=/usr/share/graylog/lib/sigar/ \
