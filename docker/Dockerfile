@@ -43,7 +43,6 @@ RUN set -ex \
     ./data/config/scripts \
   ; do \
     mkdir -p "$path"; \
-    chown -R graylog:graylog "$path"; \
   done
 
 RUN set -x \
