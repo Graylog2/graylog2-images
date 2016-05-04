@@ -40,7 +40,6 @@ RUN set -ex \
     ./data/log \
     ./data/plugin \
     ./data/config \
-    ./data/config/scripts \
   ; do \
     mkdir -p "$path"; \
   done
