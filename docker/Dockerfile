@@ -49,7 +49,7 @@ RUN set -x \
 
 COPY config ./data/config
 
-VOLUME ./data
+VOLUME /usr/share/graylog/data
 
 COPY docker-entrypoint.sh /
 
