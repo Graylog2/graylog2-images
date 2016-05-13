@@ -41,7 +41,6 @@
       "type": "shell",
       "scripts": ["scripts/prepare.sh",
                   "scripts/install_beta_ova.sh",
-                  "scripts/install_vmware.sh",
                   "scripts/autostart.sh",
                   "scripts/shell_environment.sh",
                   "scripts/cleanup.sh"

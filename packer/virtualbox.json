@@ -42,7 +42,6 @@
       "environment_vars": ["PACKAGE_VERSION={{user `package_version`}}"],
       "scripts": ["scripts/prepare.sh",
                   "scripts/install_ova.sh",
-                  "scripts/install_vmware.sh",
                   "scripts/autostart.sh",
                   "scripts/shell_environment.sh",
                   "scripts/cleanup.sh"
