@@ -11,6 +11,7 @@ if [ "$1" = 'graylog' -a "$(id -u)" = '0' ]; then
   for d in journal log plugin config contentpacks; do
     dir=/usr/share/graylog/data/$d
     if [ "$(stat --format='%U:%G' $dir)" != 'graylog:graylog' ]; then
+      mkdir -p "$dir"
       chown -R graylog:graylog "$dir"
     fi
   done
