@@ -38,14 +38,10 @@ RUN set -ex \
   && for path in \
     ./data/journal \
     ./data/log \
-    ./data/plugin \
     ./data/config \
   ; do \
     mkdir -p "$path"; \
   done
-
-RUN set -x \
-  && cp ./plugin/* ./data/plugin/
 
 COPY config ./data/config
 
