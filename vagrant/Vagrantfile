@@ -2,7 +2,7 @@ Vagrant.configure(2)  do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.hostname = "graylog"
 
-  config.vm.network :forwarded_port, guest: 9000, host: 9000
+  config.vm.network :forwarded_port, guest: 80, host: 8080
   config.vm.network :forwarded_port, guest: 12900, host: 12900
   config.vm.network :forwarded_port, guest: 12201, host: 12201, protocol: 'udp'
   config.vm.network :forwarded_port, guest: 12201, host: 12201, protocol: 'tcp'
@@ -17,6 +17,7 @@ Vagrant.configure(2)  do |config|
     curl -S -s -L -O https://packages.graylog2.org/releases/graylog-omnibus/ubuntu/graylog_latest.deb
     dpkg -i graylog_latest.deb
     rm graylog_latest.deb
+    graylog-ctl set-external-ip http://127.0.0.1:12900
     graylog-ctl reconfigure
 SCRIPT
 
