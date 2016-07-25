@@ -12,7 +12,7 @@ Graylog *OVA* appliance
 
 ### Update Packages
 
-  * Follow update instructions [here](http://docs.graylog.org/en/2.0/pages/installation/graylog_ctl.html#upgrade-graylog)
+  * Follow update instructions [here](http://docs.graylog.org/en/2.0/pages/configuration/graylog_ctl.html#upgrade-graylog)
   * View all Graylog versions available for update [here](https://packages.graylog2.org/appliances/ubuntu)
 
   
