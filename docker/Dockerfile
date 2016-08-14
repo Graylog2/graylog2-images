@@ -49,6 +49,6 @@ VOLUME /usr/share/graylog/data
 
 COPY docker-entrypoint.sh /
 
-EXPOSE 9000 12900
+EXPOSE 12900
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["graylog"]
