@@ -29,7 +29,9 @@ RUN set -x \
   && wget -O /usr/share/graylog.tgz "https://packages.graylog2.org/releases/graylog/graylog-${GRAYLOG_VERSION}.tgz" \
   && tar xfz /usr/share/graylog.tgz --strip-components=1 -C /usr/share/graylog \
   && chown -R graylog:graylog /usr/share/graylog \
-  && rm /usr/share/graylog.tgz
+  && rm /usr/share/graylog.tgz \
+  && setcap 'cap_net_bind_service=+ep' $JAVA_HOME/bin/java
+
 
 ENV PATH /usr/share/graylog/bin:$PATH
 WORKDIR /usr/share/graylog
