@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'nokogiri'
+require 'nokogiri-pretty'
 
 if ARGV.first.nil? or not File.exists? ARGV.first
   puts "Usage: ovf2ova.rb <file.ovf>"
@@ -26,9 +27,10 @@ doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:S
 doc.at_xpath("/xmlns:Envelope/ovf:NetworkSection/ovf:Network").set_attribute('ovf:name', 'NAT Network')
 doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType=10]/rasd:Connection").content = "NAT Network"
 doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType=10]/rasd:ResourceSubType").content = "vmxnet3"
+doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType=35]").remove
 
 File.open(ARGV.first,'w') do |f|
-  f.puts doc
+  f.puts doc.human
 end
 
-system("ovftool --overwrite --powerOn --diskMode=thin -tt=ova #{ARGV.first} .")
+#system("ovftool --overwrite --powerOn --diskMode=thin -tt=ova #{ARGV.first} .")
