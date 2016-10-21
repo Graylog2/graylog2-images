@@ -33,4 +33,4 @@ File.open(ARGV.first,'w') do |f|
   f.puts doc.human
 end
 
-#system("ovftool --overwrite --powerOn --diskMode=thin -tt=ova #{ARGV.first} .")
+system("ovftool --overwrite --powerOn --diskMode=thin -tt=ova #{ARGV.first} .")
