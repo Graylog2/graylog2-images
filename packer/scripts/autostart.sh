@@ -11,7 +11,7 @@ done
 
 IP=$(hostname -I|awk '{print $1}')
 if [ -z "$IP" ]; then
-  echo "Your appliance came up without a configured IP address. Graylog is probable not running correctly!" > /etc/issue
+  echo "Your appliance came up without a configured IP address. Graylog is probably not running correctly!" > /etc/issue
 else
   echo "Open http://$IP in your browser to access Graylog.\nLogin to the web interface with username/password: 'admin'.\nOr try the console here with username/password: 'ubuntu'." > /etc/issue
 fi
