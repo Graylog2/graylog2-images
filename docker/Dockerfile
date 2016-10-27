@@ -47,6 +47,9 @@ RUN set -ex \
 
 COPY config ./data/config
 
+RUN set -ex \
+  && chown -R graylog:graylog "/usr/share/graylog"
+
 VOLUME /usr/share/graylog/data
 
 COPY docker-entrypoint.sh /
