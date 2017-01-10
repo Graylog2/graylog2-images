@@ -1,6 +1,11 @@
 Openstack Graylog Image
 ========================
 
+### Pre-Considerations
+
+  * This is a showcase of Graylog and it's cluster mode. Please run this appliance always in a separated network that is isolated from the internet.
+    Read also the production readiness [nodes](http://docs.graylog.org/en/latest/pages/installation/virtual_machine_appliances.html#production-readiness)
+
 ### Download
 
   * Stable branch (2.1.2): [graylog.qcow2.gz](http://packages.graylog2.org/releases/graylog-omnibus/qcow2/graylog-2.1.2-1.qcow2.gz)
