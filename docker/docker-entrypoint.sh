@@ -20,6 +20,11 @@ if [ "$1" = 'graylog' -a "$(id -u)" = '0' ]; then
       chown -R graylog:graylog "$dir"
     fi
   done
+  # Custom configuration support
+  source "/usr/share/graylog/data/config/scripts/configure_linked_containers.sh"
+  source "/usr/share/graylog/data/config/scripts/easy_configuration.sh"
+  source "/usr/share/graylog/data/config/scripts/advanced_configuration.sh"
+  source "/usr/share/graylog/data/config/scripts/es_configuration.sh"
   # Start Graylog server
   set -- gosu graylog "$JAVA_HOME/bin/java" $GRAYLOG_SERVER_JAVA_OPTS \
       -jar \
