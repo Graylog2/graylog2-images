@@ -8,7 +8,7 @@ Openstack Graylog Image
 
 ### Download
 
-  * Stable branch (2.2.1): [graylog.qcow2.gz](http://packages.graylog2.org/releases/graylog-omnibus/qcow2/graylog-2.2.1-1.qcow2.gz)
+  * Stable branch (2.2.3): [graylog.qcow2.gz](http://packages.graylog2.org/releases/graylog-omnibus/qcow2/graylog-2.2.3-1.qcow2.gz)
 
 Detailed documentation can be found [here](http://docs.graylog.org/en/latest/pages/installation/openstack.html).
 

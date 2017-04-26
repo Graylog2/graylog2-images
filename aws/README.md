@@ -10,19 +10,19 @@ AWS EC2 Images
 
 | Version | Region | AMI | Launch Wizard |
 |---------|--------|-----|-------------|
-| 2.2.1  | us-east-1 | ami-ba8d5aac | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami-ba8d5aac) |
-| 2.2.1  | us-west-1 | ami-d2a7f8b2 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-d2a7f8b2) |
-| 2.2.1  | us-west-2 | ami-7d62e31d | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-7d62e31d) |
-| 2.2.1  | eu-west-1 | ami-914b69f7 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-914b69f7) |
-| 2.2.1  | eu-central-1 | ami-0ece0461 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-0ece0461) |
-| 2.2.1  | ap-northeast-1 | ami-cd89c0aa | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#LaunchInstanceWizard:ami=ami-cd89c0aa) |
-| 2.2.1  | ap-southeast-1 | ami-893c8aea | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LaunchInstanceWizard:ami=ami-893c8aea) |
-| 2.2.1  | ap-southeast-2 | ami-38d7d75b | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-38d7d75b) |
-| 2.2.1  | sa-east-1 | ami-83deb9ef | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-83deb9ef) |
+| 2.2.3  | us-east-1 | ami-eb7afbfd | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-eb7afbfd) |
+| 2.2.3  | us-west-1 | ami-d7643eb7 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-d7643eb7) |
+| 2.2.3  | us-west-2 | ami-d39402b3 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-d39402b3) |
+| 2.2.3  | eu-west-1 | ami-df0e37b9 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-df0e37b9) |
+| 2.2.3  | eu-central-1 | ami-8f76a6e0 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-8f76a6e0) |
+| 2.2.3  | ap-northeast-1 | ami-ac2402cb | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#LaunchInstanceWizard:ami=ami-ac2402cb) |
+| 2.2.3  | ap-southeast-1 | ami-e661de85 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LaunchInstanceWizard:ami=ami-e661de85) |
+| 2.2.3  | ap-southeast-2 | ami-10b1be73 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-10b1be73) |
+| 2.2.3  | sa-east-1 | ami-7ebbd812 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-7ebbd812) |
 
 ### Update Packages
 
-  * Follow update instructions [here](http://docs.graylog.org/en/1.2/pages/installation/graylog_ctl.html#upgrade-graylog)
+  * Follow update instructions [here](http://docs.graylog.org/en/2.2/pages/installation/graylog_ctl.html#upgrade-graylog)
   * View all Graylog versions available for update [here](https://packages.graylog2.org/appliances/ubuntu)
 
 Detailed documentation can be found [here](http://docs.graylog.org/en/latest/pages/installation/aws.html).
