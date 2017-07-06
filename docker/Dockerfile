@@ -45,12 +45,15 @@ RUN set -ex \
     mkdir -p "$path"; \
   done
 
-COPY config ./data/config
+COPY config/* ./data/config/
+
+RUN chown -R graylog:graylog ./data
 
 VOLUME /usr/share/graylog/data
 
 COPY docker-entrypoint.sh /
 
-EXPOSE 9000 12900
+EXPOSE 9000 12900 12201 12201/udp
+USER root
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["graylog"]
