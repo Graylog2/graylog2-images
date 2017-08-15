@@ -1,37 +1,22 @@
-FROM java:8-jre
+FROM java:8-jre-alpine
 
 ARG GRAYLOG_VERSION
 
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
+#ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
 ENV GRAYLOG_SERVER_JAVA_OPTS "-Xms1g -Xmx2g -XX:NewRatio=1 -XX:MaxMetaspaceSize=256m -server -XX:+ResizeTLAB -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC -XX:-OmitStackTraceInFastThrow"
-ENV GOSU_VERSION 1.7
+
+RUN apk add --update su-exec openssl tar libcap \
+  && rm -rf /tmp/* /var/tmp/* /var/cache/apk/*
 
 RUN set -x \
-  && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
-  && wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc" \
-  && export GNUPGHOME="$(mktemp -d)" \
-  && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
-  && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
-  && rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
-  && chmod +x /usr/local/bin/gosu \
-  && gosu nobody true
-
-
-RUN set -x \
-  && apt-get update \
-  && apt-get dist-upgrade -y \
-  && rm -rf /var/lib/apt/lists/*
-
-RUN set -x \
-  && addgroup --gid 1100 graylog \
-  && adduser --disabled-password --disabled-login --gecos '' --uid 1100 --gid 1100 graylog \
+  && addgroup -g 1100 graylog \
+  && adduser -D -s /sbin/nologin -u 1100 -G graylog graylog \
   && mkdir /usr/share/graylog \
   && wget -O /usr/share/graylog.tgz "https://packages.graylog2.org/releases/graylog/graylog-${GRAYLOG_VERSION}.tgz" \
   && tar xfz /usr/share/graylog.tgz --strip-components=1 -C /usr/share/graylog \
   && chown -R graylog:graylog /usr/share/graylog \
   && rm /usr/share/graylog.tgz \
   && setcap 'cap_net_bind_service=+ep' $JAVA_HOME/bin/java
-
 
 ENV PATH /usr/share/graylog/bin:$PATH
 WORKDIR /usr/share/graylog
