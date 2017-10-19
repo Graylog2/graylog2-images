@@ -12,7 +12,7 @@ Graylog *OVA* appliance
 
 ### Download
 
-  * Stable branch (2.3.1): [graylog.ova](https://packages.graylog2.org/releases/graylog-omnibus/ova/graylog-2.3.1-3.ova)
+  * Stable branch (2.3.2): [graylog.ova](https://packages.graylog2.org/releases/graylog-omnibus/ova/graylog-2.3.2-2.ova)
   * Pre-release branch (2.3.0-rc.2): [graylog-beta.ova](https://packages.graylog2.org/releases/graylog-omnibus/ova/graylog-pre-2.3.0-rc.2-2.ova)
 
 ### Update Packages
