@@ -11,7 +11,7 @@
     "ami_name": "graylog-{{user `package_version`}}",
     "ami_description": "Full-stack installation of Graylog - maintained by Graylog, Inc.",
     "ami_groups": ["all"],
-    "ami_regions": ["us-east-2", "us-west-1", "us-west-2", "eu-west-1", "eu-west-2", "eu-central-1", "ap-northeast-1", "ap-southeast-1", "ap-southeast-2", "sa-east-1"],
+    "ami_regions": ["us-east-2", "us-west-1", "us-west-2", "eu-west-1", "eu-west-2", "eu-west-3", "eu-central-1", "ap-northeast-1", "ap-southeast-1", "ap-southeast-2", "sa-east-1"],
     "tags": {
       "OS_Version": "Ubuntu",
       "Release": "Latest"
