@@ -17,7 +17,7 @@ if [ "$1" = 'graylog' -a "$(id -u)" = '0' ]; then
       mkdir -p "$dir"
     fi
     if [ "$(stat --format='%U:%G' $dir)" != 'graylog:graylog' ]; then
-      chown -R graylog:graylog "$dir"
+      chown -R graylog:graylog "$dir" || echo "WARNING: Unable to change ownership of $dir"
     fi
   done
   # Start Graylog server
