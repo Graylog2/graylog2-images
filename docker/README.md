@@ -1,5 +1,13 @@
 Graylog *Docker* container
-==================================
+==========================
+
+## ⚠️  Deprecation notice ⚠️
+
+This Docker image has been deprecated in favor of [`graylog/graylog`](https://hub.docker.com/r/graylog/graylog/).
+
+Please use the [`graylog/graylog`](https://hub.docker.com/r/graylog/graylog/) Docker image instead and file issues for the Docker image at [Graylog2/graylog-docker](https://github.com/Graylog2/graylog-docker/issues).
+
+----
 
 ### Pre-Considerations
 
