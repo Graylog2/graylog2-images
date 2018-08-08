@@ -8,8 +8,7 @@ if ARGV.first.nil? or not File.exists? ARGV.first
   exit 1
 end
 
-xml = File.read(ARGV.first)
-doc = Nokogiri::XML(xml).document
+doc = Nokogiri::XML(File.open(ARGV.first))
 
 namespaces = Hash.new
 doc.collect_namespaces.each_pair do |key, value|
@@ -27,7 +26,7 @@ doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:S
 doc.at_xpath("/xmlns:Envelope/ovf:NetworkSection/ovf:Network").set_attribute('ovf:name', 'NAT Network')
 doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType=10]/rasd:Connection").content = "NAT Network"
 doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType=10]/rasd:ResourceSubType").content = "vmxnet3"
-doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType=35]").remove
+#doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType=35]").remove
 
 File.open(ARGV.first,'w') do |f|
   f.puts doc.human

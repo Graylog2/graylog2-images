@@ -8,16 +8,18 @@ if [ -z "$PACKAGE_VERSION" ] ; then
 fi
 echo "Building image for Graylog $PACKAGE_VERSION"
 
-# Prepare repositories
-apt-key adv --fetch-keys https://artifacts.elastic.co/GPG-KEY-elasticsearch
-echo 'deb https://artifacts.elastic.co/packages/5.x/apt stable main' > /etc/apt/sources.list.d/elastic.list
 
 # Update repositories
 apt-get update
 apt-get dist-upgrade -y
 # Install tools needed for installation
-apt-get install -y apt-transport-https curl wget rsync vim man sudo avahi-autoipd pwgen uuid-runtime
+apt-get install -y apt-transport-https curl wget rsync vim man sudo avahi-autoipd pwgen uuid-runtime gnupg
 apt-get install -y tzdata ntp ntpdate
+
+# Prepare repositories
+apt-key adv --fetch-keys https://artifacts.elastic.co/GPG-KEY-elasticsearch
+echo 'deb https://artifacts.elastic.co/packages/5.x/apt stable main' > /etc/apt/sources.list.d/elastic.list
+apt-get update
 
 # Install Java
 apt-get install -y openjdk-8-jre
@@ -50,13 +52,32 @@ if [ -f /var/lib/graylog-server/firstboot ]; then
   echo 'Preparing Graylog...'
   PASSWORD_SECRET=\`pwgen -N 1 -s 96\`
   ADMIN_PASSWORD=\`pwgen -N 1 -B -v -s 8\`
-  ADMIN_PASSWORD_SHA=\`echo -n ${ADMIN_PASSWORD} | shasum -a 256 | cut -d ' ' -f1\`
+  ADMIN_PASSWORD_SHA=\`echo -n \${ADMIN_PASSWORD} | shasum -a 256 | cut -d ' ' -f1\`
   sed -i "s/password_secret =/password_secret = \${PASSWORD_SECRET}/g" /etc/graylog/server/server.conf
   sed -i "s/root_password_sha2 =/root_password_sha2 = \${ADMIN_PASSWORD_SHA}/g" /etc/graylog/server/server.conf
   sed -i "s\rest_listen_uri = http://127.0.0.1:9000/api/$\rest_listen_uri = http://0.0.0.0:9000/api/\g" /etc/graylog/server/server.conf
   sed -i "s\#web_listen_uri = http://127.0.0.1:9000/$\web_listen_uri = http://0.0.0.0:9000/\g" /etc/graylog/server/server.conf
   systemctl enable graylog-server.service
   systemctl restart graylog-server.service
+
+
+  for i in \`seq 1 10\`; do
+
+  if [ \$(ip -o address show 2> /dev/null | grep -v '1: lo' | wc -l) -ne 0 ]; then
+     break
+  fi
+  sleep 1
+  done
+
+  IP=\`echo -n \$(hostname -I|awk '{print $1}') | sed 's/^ *//;s/ *\$//'\`
+  if [ -z "\$IP" ]; then
+    echo "Your appliance came up without a configured IP address. Graylog is probably not running correctly!" > /etc/issue
+    echo " Shell login: ubuntu:ubuntu" >> /etc/issue
+  else
+    echo "Open http://\$IP:9000 in your browser to access Graylog." > /etc/issue
+    echo " Web login: admin:\${ADMIN_PASSWORD}" >> /etc/issue
+    echo " Shell login: ubuntu:ubuntu" >> /etc/issue
+  fi
 
   cat << EOHEADER > /etc/update-motd.d/00-header
 #!/bin/sh
@@ -70,31 +91,17 @@ EOHEADER
 
 URL="http://docs.graylog.org/en/latest/pages/installation/virtual_machine_appliances.html"
 
-for i in \\\`seq 1 10\\\`; do
-
-  if [ \\\$(ip -o address show 2> /dev/null | grep -v '1: lo' | wc -l) -ne 0 ]; then
-     break
-  fi
-  sleep 1
-done
-
-IP=\\\`echo -n \\\$(hostname -I|awk '{print $1}') | sed 's/^ *//;s/ *\\\$//'\\\`
-if [ -z "\\\$IP" ]; then
-  printf "Your appliance came up without a configured IP address. Graylog is probably not running correctly!\n"
-else
-  printf "Open http://\\\$IP:9000 in your browser to access Graylog.\n"
-fi
-
-printf "\n Web login: admin:\${ADMIN_PASSWORD}\n"
-printf " SSH login: ubuntu:ubuntu\n"
 printf "\n Documentation:  %s\n" "\\\$URL"
-printf "\nFor accessing Graylog behind a virtual IP change the web_endpoint_uri config option in /etc/graylog/server/server.conf accordingly and restart Graylog.\n"
+printf "\nFor accessing Graylog behind a virtual IP change the web_endpoint_uri config option in /etc/graylog/server/server.conf accordingly and restart Graylog.\n\n"
 EOHELP
 
   rm -f /etc/update-motd.d/50-landscape-sysinfo
   rm -f /etc/update-motd.d/50-motd-news
   rm -f /etc/update-motd.d/51-cloudguest
+  rm -f /etc/update-motd.d/91-release-upgrade
   rm -f /var/lib/graylog-server/firstboot
+else
+  echo "Graylog Appliance" > /etc/issue
 fi
 exit 0
 EOF

@@ -1,24 +1,25 @@
 {
   "variables": {
-    "package_version": "{{env `PACKAGE_VERSION`}}"
+    "package_version": "{{env `PACKAGE_VERSION`}}",
+    "boot_command_prefix": "<esc><esc><enter><wait>"
   },
   "builders": [{
     "type": "virtualbox-iso",
     "format": "ovf",
-    "headless": true,
+    "headless": false,
     "guest_os_type": "Ubuntu_64",
     "vm_name": "graylog",
-    "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.5-server-amd64.iso",
-    "iso_checksum": "dd54dc8cfc2a655053d19813c2f9aa9f",
-    "iso_checksum_type": "md5",
+    "iso_url": "http://www.cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.1-server-amd64.iso",
+    "iso_checksum": "a5b0ea5918f850124f3d72ef4b85bda82f0fcd02ec721be19c1a6952791c8ee8",
+    "iso_checksum_type": "sha256",
     "disk_size": 20000,
     "ssh_username": "ubuntu",
     "ssh_password": "ubuntu",
     "ssh_wait_timeout": "20m",
     "http_directory": "http",
-    "boot_wait": "5s",
+    "boot_wait": "10s",
     "boot_command": [
-      "<esc><esc><enter><wait>",
+      "{{ user `boot_command_prefix` }}",
       "/install/vmlinuz noapic preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
       "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
       "hostname={{ .Name }} ",
@@ -42,7 +43,6 @@
       "environment_vars": ["PACKAGE_VERSION={{user `package_version`}}"],
       "scripts": ["scripts/prepare.sh",
                   "scripts/install_ova.sh",
-                  "scripts/autostart.sh",
                   "scripts/shell_environment.sh",
                   "scripts/cleanup.sh"
       ],
