@@ -5,7 +5,7 @@
   "builders": [{
     "type": "amazon-ebs",
     "region": "us-east-1",
-    "source_ami": "ami-9a562df2",
+    "source_ami": "ami-920b10ed",
     "instance_type": "m3.medium",
     "ssh_username": "ubuntu",
     "ami_name": "graylog-{{user `package_version`}}",
