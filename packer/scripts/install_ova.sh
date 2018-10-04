@@ -13,33 +13,37 @@ echo "Building image for Graylog $PACKAGE_VERSION"
 apt-get update
 apt-get dist-upgrade -y
 # Install tools needed for installation
-apt-get install -y apt-transport-https curl wget rsync vim man sudo avahi-autoipd pwgen uuid-runtime gnupg
+apt-get install -y apt-transport-https curl wget rsync vim man sudo avahi-autoipd pwgen uuid-runtime gnupg net-tools
 apt-get install -y tzdata ntp ntpdate
 
 # Prepare repositories
 apt-key adv --fetch-keys https://artifacts.elastic.co/GPG-KEY-elasticsearch
 echo 'deb https://artifacts.elastic.co/packages/5.x/apt stable main' > /etc/apt/sources.list.d/elastic.list
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 68818C72E52529D4
+echo 'deb http://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse' > /etc/apt/sources.list.d/mongodb-org.list
 apt-get update
 
 # Install Java
 apt-get install -y openjdk-8-jre
 
 # Install MongoDB
-apt-get install -y mongodb
+apt-get install -y mongodb-org
 
 # Install Elasticsearch
 apt-get install -y elasticsearch
 
 # Install Graylog server
-wget -nv -O /tmp/graylog-repo.deb https://packages.graylog2.org/repo/packages/graylog-2.4-repository_latest.deb
+wget -nv -O /tmp/graylog-repo.deb https://packages.graylog2.org/repo/packages/graylog-3.0-repository_latest.deb
 dpkg -i /tmp/graylog-repo.deb
 rm -f /tmp/graylog-repo.deb
 apt-get update
 apt-get install graylog-server=${PACKAGE_VERSION}
 
+# Install Nginx
+apt-get install -y nginx
+
 # configure Elasticsearch
 sed -i 's/#cluster.name.*/cluster.name: graylog/g' /etc/elasticsearch/elasticsearch.yml
-systemctl enable elasticsearch.service
 
 # Prepare Graylog configuration for first boot
 touch /var/lib/graylog-server/firstboot
@@ -55,11 +59,13 @@ if [ -f /var/lib/graylog-server/firstboot ]; then
   ADMIN_PASSWORD_SHA=\`echo -n \${ADMIN_PASSWORD} | shasum -a 256 | cut -d ' ' -f1\`
   sed -i "s/password_secret =/password_secret = \${PASSWORD_SECRET}/g" /etc/graylog/server/server.conf
   sed -i "s/root_password_sha2 =/root_password_sha2 = \${ADMIN_PASSWORD_SHA}/g" /etc/graylog/server/server.conf
-  sed -i "s\rest_listen_uri = http://127.0.0.1:9000/api/$\rest_listen_uri = http://0.0.0.0:9000/api/\g" /etc/graylog/server/server.conf
-  sed -i "s\#web_listen_uri = http://127.0.0.1:9000/$\web_listen_uri = http://0.0.0.0:9000/\g" /etc/graylog/server/server.conf
+  sed -i "s\#http_bind_address = 127.0.0.1:9000$\http_bind_address = 0.0.0.0:9000\g" /etc/graylog/server/server.conf
+  systemctl enable mongod.service
+  systemctl restart mongod.service
+  systemctl enable elasticsearch.service
+  systemctl restart elasticsearch.service
   systemctl enable graylog-server.service
   systemctl restart graylog-server.service
-
 
   for i in \`seq 1 10\`; do
 
@@ -74,7 +80,8 @@ if [ -f /var/lib/graylog-server/firstboot ]; then
     echo "Your appliance came up without a configured IP address. Graylog is probably not running correctly!" > /etc/issue
     echo " Shell login: ubuntu:ubuntu" >> /etc/issue
   else
-    echo "Open http://\$IP:9000 in your browser to access Graylog." > /etc/issue
+    echo "Open http://\$IP in your browser to access Graylog." > /etc/issue
+    echo "Write down the following passwords, they appear only once after the first boot." >> /etc/issue
     echo " Web login: admin:\${ADMIN_PASSWORD}" >> /etc/issue
     echo " Shell login: ubuntu:ubuntu" >> /etc/issue
   fi
@@ -92,7 +99,6 @@ EOHEADER
 URL="http://docs.graylog.org/en/latest/pages/installation/virtual_machine_appliances.html"
 
 printf "\n Documentation:  %s\n" "\\\$URL"
-printf "\nFor accessing Graylog behind a virtual IP change the web_endpoint_uri config option in /etc/graylog/server/server.conf accordingly and restart Graylog.\n\n"
 EOHELP
 
   rm -f /etc/update-motd.d/50-landscape-sysinfo
@@ -107,3 +113,53 @@ exit 0
 EOF
 
 chmod +x /etc/rc.local
+
+# Configure nginx
+cat << EOF > /usr/share/nginx/html/502.html
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Graylog is currently not reachable</title>
+<style>
+<!--
+        body {font-family: arial,sans-serif}
+        img { border:none; }
+//-->
+</style>
+</head>
+<body>
+<blockquote>
+        <h2>Graylog is currently not reachable...</h2>
+        <p>There is either no Graylog web application running or it's not reachable by your browser. Please reload this page in case the application needs some more time to start up. If your appliance is only reachable by a virtual IP or it's behind a proxy, check the <code>http_*_uri</code> settings in the Graylog server.conf file. For further reading check the online documentation:
+        <ul>
+                <li><b>Getting started</b> - <a href="http://docs.graylog.org/en/latest/pages/getting_started/configure.html">http://docs.graylog.org/en/latest/pages/getting_started/configure.html</a></li>
+                <li><b>Web interface</b> -  <a href="http://docs.graylog.org/en/latest/pages/configuration/web_interface.html">http://docs.graylog.org/en/latest/pages/configuration/web_interface.html</a></li>
+                <li><b>Ask the community</b> - <a href="https://community.graylog.org/">https://community.graylog.org/</a></li>
+        </ul>
+</blockquote>
+</body>
+</html>
+EOF
+
+cat << EOF > /etc/nginx/sites-available/default
+server {
+      listen 80;
+      location / {
+        proxy_pass http://localhost:9000;
+        proxy_http_version 1.1;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_pass_request_headers on;
+        proxy_connect_timeout 150;
+        proxy_send_timeout 100;
+        proxy_read_timeout 100;
+        proxy_buffers 4 32k;
+        client_max_body_size 8m;
+        client_body_buffer_size 128k;
+      }
+      error_page 502 /502.html;
+      location  /502.html {
+        internal;
+      }
+}
