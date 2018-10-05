@@ -6,7 +6,7 @@
   "builders": [{
     "type": "virtualbox-iso",
     "format": "ovf",
-    "headless": false,
+    "headless": true,
     "guest_os_type": "Ubuntu_64",
     "vm_name": "graylog",
     "iso_url": "http://www.cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.1-server-amd64.iso",
