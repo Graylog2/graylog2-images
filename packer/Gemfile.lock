@@ -1,9 +1,9 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    mini_portile (0.6.1)
-    nokogiri (1.6.5)
-      mini_portile (~> 0.6.0)
+    mini_portile2 (2.3.0)
+    nokogiri (1.8.5)
+      mini_portile2 (~> 2.3.0)
     nokogiri-pretty (0.1.0)
       nokogiri
 
@@ -15,4 +15,4 @@ DEPENDENCIES
   nokogiri-pretty
 
 BUNDLED WITH
-   1.11.2
+   1.16.1
