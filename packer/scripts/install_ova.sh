@@ -158,6 +158,7 @@ server {
         proxy_buffers 4 32k;
         client_max_body_size 8m;
         client_body_buffer_size 128k;
+        expires off;
       }
       error_page 502 /502.html;
       location  /502.html {
