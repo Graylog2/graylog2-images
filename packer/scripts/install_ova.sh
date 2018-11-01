@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set +x
+set -e
 
 if [ -z "$PACKAGE_VERSION" ] ; then
   echo "No package version set, exiting."
