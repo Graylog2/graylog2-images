@@ -66,7 +66,6 @@ if [ -f /var/lib/graylog-server/firstboot ]; then
   systemctl start mongod.service
   systemctl enable elasticsearch.service
   systemctl start elasticsearch.service
-  timeout 60 bash -c "until curl -s -H \'Accept: application/json\' http://127.0.0.1:9200/; do sleep 1; done"
   systemctl enable graylog-server.service
   systemctl restart graylog-server.service
 
@@ -117,6 +116,13 @@ EOF
 
 chmod +x /etc/rc.local
 
+# Configure graylog-server overrides
+mkdir -p /etc/systemd/system/graylog-server.service.d
+cat << EOF > /etc/systemd/system/graylog-server.service.d/10-after_services.conf
+[Unit]
+After=network-online.target elasticsearch.service mongod.service
+EOF
+
 # Configure nginx
 cat << EOF > /usr/share/nginx/html/502.html
 <html>
@@ -148,7 +154,7 @@ cat << EOF > /etc/nginx/sites-available/default
 server {
       listen 80;
       location / {
-        proxy_pass http://localhost:9000/;
+        proxy_pass http://127.0.0.1:9000/;
         proxy_http_version 1.1;
         proxy_set_header Host \$host;
         proxy_set_header X-Real-IP \$remote_addr;
@@ -157,7 +163,7 @@ server {
         proxy_connect_timeout 150;
         proxy_send_timeout 100;
         proxy_read_timeout 100;
-        proxy_buffers 4 32k;
+        proxy_buffering off;
         client_max_body_size 8m;
         client_body_buffer_size 128k;
         expires off;
