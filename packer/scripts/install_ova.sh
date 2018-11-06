@@ -63,9 +63,10 @@ if [ -f /var/lib/graylog-server/firstboot ]; then
   sed -i "s/root_password_sha2 =/root_password_sha2 = \${ADMIN_PASSWORD_SHA}/g" /etc/graylog/server/server.conf
   sed -i "s\#http_bind_address = 127.0.0.1:9000$\http_bind_address = 0.0.0.0:9000\g" /etc/graylog/server/server.conf
   systemctl enable mongod.service
-  systemctl restart mongod.service
+  systemctl start mongod.service
   systemctl enable elasticsearch.service
-  systemctl restart elasticsearch.service
+  systemctl start elasticsearch.service
+  timeout 60 bash -c "until curl -s -H \'Accept: application/json\' http://127.0.0.1:9200/; do sleep 1; done"
   systemctl enable graylog-server.service
   systemctl restart graylog-server.service
 
