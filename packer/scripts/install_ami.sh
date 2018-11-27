@@ -102,6 +102,7 @@ EOHEADER
 
 URL="http://docs.graylog.org/en/latest/pages/installation/virtual_machine_appliances.html"
 
+cat /etc/issue
 printf "\n Documentation:  %s\n" "\\\$URL"
 EOHELP
 
@@ -117,7 +118,6 @@ exit 0
 EOF
 
 chmod +x /etc/rc.local
-cp /etc/issue /etc/motd
 sed -i "s\#PrintLastLog yes$\PrintLastLog no\g" /etc/ssh/sshd_config
 
 # Configure graylog-server overrides
