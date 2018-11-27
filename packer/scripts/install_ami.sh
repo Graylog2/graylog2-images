@@ -117,7 +117,7 @@ exit 0
 EOF
 
 chmod +x /etc/rc.local
-rm -f /etc.issue.net
+rm -f /etc/issue.net
 ln -s /etc/issue /etc/issue.net
 sed -i "s\#Banner none$\Banner /etc/issue.net\g" /etc/ssh/sshd_config
 
