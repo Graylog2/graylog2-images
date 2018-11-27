@@ -11,7 +11,12 @@ echo "Building image for Graylog $PACKAGE_VERSION"
 
 # Update repositories
 apt-get update
-apt-get dist-upgrade -y
+# work around for unattended grub upgrade
+rm /boot/grub/menu.lst
+update-grub-legacy-ec2 -y
+
+apt-get dist-upgrade -qq --force-yes
+
 # Install tools needed for installation
 apt-get install -y apt-transport-https curl wget rsync vim man sudo avahi-autoipd pwgen uuid-runtime gnupg net-tools
 apt-get install -y tzdata ntp ntpdate
