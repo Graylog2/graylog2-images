@@ -117,6 +117,9 @@ exit 0
 EOF
 
 chmod +x /etc/rc.local
+rm -f /etc.issue.net
+ln -s /etc/issue /etc/issue.net
+sed -i "s\#Banner none$\Banner /etc/issue.net\g" /etc/ssh/sshd_config
 
 # Configure graylog-server overrides
 mkdir -p /etc/systemd/system/graylog-server.service.d
@@ -161,6 +164,7 @@ server {
         proxy_set_header Host \$host;
         proxy_set_header X-Real-IP \$remote_addr;
         proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Graylog-Server-URL http://\$host;
         proxy_pass_request_headers on;
         proxy_connect_timeout 150;
         proxy_send_timeout 100;
