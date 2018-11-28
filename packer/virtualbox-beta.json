@@ -1,0 +1,52 @@
+{
+  "variables": {
+    "package_version": "{{env `PACKAGE_VERSION`}}",
+    "boot_command_prefix": "<esc><esc><enter><wait>"
+  },
+  "builders": [{
+    "type": "virtualbox-iso",
+    "format": "ovf",
+    "headless": true,
+    "guest_os_type": "Ubuntu_64",
+    "vm_name": "graylog-beta",
+    "iso_url": "http://www.cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.1-server-amd64.iso",
+    "iso_checksum": "a5b0ea5918f850124f3d72ef4b85bda82f0fcd02ec721be19c1a6952791c8ee8",
+    "iso_checksum_type": "sha256",
+    "disk_size": 20000,
+    "ssh_username": "ubuntu",
+    "ssh_password": "ubuntu",
+    "ssh_wait_timeout": "20m",
+    "http_directory": "http",
+    "boot_wait": "10s",
+    "boot_command": [
+      "{{ user `boot_command_prefix` }}",
+      "/install/vmlinuz noapic preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+      "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+      "hostname={{ .Name }} ",
+      "fb=false debconf/frontend=noninteractive ",
+      "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+      "initrd=/install/initrd.gz -- <enter>"
+    ],
+    "shutdown_command": "echo 'ubuntu' | sudo -S shutdown -P now",
+    "vboxmanage": [
+      ["modifyvm", "{{.Name}}", "--memory", "4096"],
+      ["modifyvm", "{{.Name}}", "--cpus", "2"],
+      ["modifyvm", "{{.Name}}", "--natpf1", "tcp9000,tcp,,9000,,9000"],
+      ["modifyvm", "{{.Name}}", "--natpf1", "tcp12900,tcp,,12900,,12900"],
+      ["modifyvm", "{{.Name}}", "--natpf1", "tcp12201,tcp,,12201,,12201"],
+      ["modifyvm", "{{.Name}}", "--natpf1", "udp12201,udp,,12201,,12201"]
+    ]
+  }],
+  "provisioners": [
+    {
+      "type": "shell",
+      "environment_vars": ["PACKAGE_VERSION={{user `package_version`}}"],
+      "scripts": ["scripts/prepare.sh",
+                  "scripts/install_ova.sh",
+                  "scripts/shell_environment.sh",
+                  "scripts/cleanup.sh"
+      ],
+      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
+    }
+  ]
+}
