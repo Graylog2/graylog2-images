@@ -9,7 +9,6 @@ if [ -z "$PACKAGE_VERSION" ] ; then
 fi
 echo "Building image for Graylog $PACKAGE_VERSION"
 
-
 # Update repositories
 apt-get update
 apt-get dist-upgrade -y
@@ -173,3 +172,4 @@ server {
         internal;
       }
 }
+EOF
