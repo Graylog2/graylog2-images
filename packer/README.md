@@ -39,18 +39,18 @@ Noticeable Options
 ------------------
 ### AWS
 
-|Parameter | Value |
-|----------|-------|
-|type      |Choose AWS storage type, EBS works fine for the beginning|
-|ami_groups | 'all' means publicly available|
-|ami_regions | Array of availability zones to copy the image after creation|
+| Parameter   | Value                                                        |
+| ----------  | -------                                                      |
+| type        | Choose AWS storage type, EBS works fine for the beginning    |
+| ami_groups  | 'all' means publicly available                               |
+| ami_regions | Array of availability zones to copy the image after creation |
 
 
 ### Virtualbox
 
-|Parameter | Value |
-|----------|-------|
-|disk_size | Set the maximum disk size for the image|
-|modifyvm --memory | RAM size|
-|modifyvm --cpus | Number of CPUs|
-|modifyvm --natpf1 | Default port forwards|
+| Parameter         | Value                                   |
+| ----------        | -------                                 |
+| disk_size         | Set the maximum disk size for the image |
+| modifyvm --memory | RAM size                                |
+| modifyvm --cpus   | Number of CPUs                          |
+| modifyvm --natpf1 | Default port forwards                   |
