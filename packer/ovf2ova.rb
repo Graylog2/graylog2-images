@@ -27,8 +27,9 @@ doc.at_xpath("/xmlns:Envelope/ovf:NetworkSection/ovf:Network").set_attribute('ov
 doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType=10]/rasd:Connection").content = "NAT Network"
 doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType=10]/rasd:ResourceSubType").content = "vmxnet3"
 
-# Remove unnecessary sound card
+# Remove unnecessary sound card and disk controllers
 doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType=35]").remove
+doc.at_xpath("/xmlns:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType=5]").remove
 
 File.open(ARGV.first,'w') do |f|
   f.puts doc.human
