@@ -12,6 +12,7 @@
     "iso_url": "http://www.cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.1-server-amd64.iso",
     "iso_checksum": "a5b0ea5918f850124f3d72ef4b85bda82f0fcd02ec721be19c1a6952791c8ee8",
     "iso_checksum_type": "sha256",
+    "hard_drive_interface": "scsi",
     "disk_size": 20000,
     "ssh_username": "ubuntu",
     "ssh_password": "ubuntu",
