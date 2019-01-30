@@ -9,12 +9,9 @@ if [ -z "$PACKAGE_VERSION" ] ; then
 fi
 echo "Building image for Graylog $PACKAGE_VERSION"
 
-export DEBIAN_FRONTEND=noninteractive
-
 # Update repositories
 apt-get update
-apt-get dist-upgrade -y -o Dpkg::Options::="--force-confdef"
-
+apt-get dist-upgrade -y
 # Install tools needed for installation
 apt-get install -y apt-transport-https curl wget rsync vim man sudo avahi-autoipd pwgen uuid-runtime gnupg net-tools
 apt-get install -y tzdata ntp ntpdate
@@ -56,6 +53,14 @@ touch /var/lib/graylog-server/firstboot
 cat << EOF > /etc/rc.local
 #!/bin/bash
 
+# wait for getting an IP address
+for i in \`seq 1 10\`; do
+  if [ \$(ip -o address show 2> /dev/null | grep -v '1: lo' | wc -l) -ne 0 ]; then
+    break
+  fi
+  sleep 1
+done
+
 if [ -f /var/lib/graylog-server/firstboot ]; then
   echo 'Preparing Graylog...'
   PASSWORD_SECRET=\`pwgen -N 1 -s 96\`
@@ -70,14 +75,6 @@ if [ -f /var/lib/graylog-server/firstboot ]; then
   systemctl start elasticsearch.service
   systemctl enable graylog-server.service
   systemctl restart graylog-server.service
-
-  for i in \`seq 1 10\`; do
-
-  if [ \$(ip -o address show 2> /dev/null | grep -v '1: lo' | wc -l) -ne 0 ]; then
-     break
-  fi
-  sleep 1
-  done
 
   IP=\`echo -n \$(hostname -I|awk '{print $1}') | sed 's/^ *//;s/ *\$//'\`
   if [ -z "\$IP" ]; then

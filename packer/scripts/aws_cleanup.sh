@@ -5,10 +5,6 @@ set -x
 # in case there are changes for grub
 update-grub
 
-# Removing leftover leases and persistent rules
-echo "cleaning up dhcp leases"
-rm -f /var/lib/dhcp/*
-
 apt-get autoremove
 apt-get autoclean
 apt-get clean
