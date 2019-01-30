@@ -53,6 +53,14 @@ touch /var/lib/graylog-server/firstboot
 cat << EOF > /etc/rc.local
 #!/bin/bash
 
+# wait for getting an IP address
+for i in \`seq 1 10\`; do
+  if [ \$(ip -o address show 2> /dev/null | grep -v '1: lo' | wc -l) -ne 0 ]; then
+    break
+  fi
+  sleep 1
+done
+
 if [ -f /var/lib/graylog-server/firstboot ]; then
   echo 'Preparing Graylog...'
   PASSWORD_SECRET=\`pwgen -N 1 -s 96\`
@@ -67,14 +75,6 @@ if [ -f /var/lib/graylog-server/firstboot ]; then
   systemctl start elasticsearch.service
   systemctl enable graylog-server.service
   systemctl restart graylog-server.service
-
-  for i in \`seq 1 10\`; do
-
-  if [ \$(ip -o address show 2> /dev/null | grep -v '1: lo' | wc -l) -ne 0 ]; then
-     break
-  fi
-  sleep 1
-  done
 
   IP=\`echo -n \$(hostname -I|awk '{print $1}') | sed 's/^ *//;s/ *\$//'\`
   if [ -z "\$IP" ]; then
