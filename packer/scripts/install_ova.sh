@@ -13,7 +13,7 @@ echo "Building image for Graylog $PACKAGE_VERSION"
 apt-get update
 apt-get dist-upgrade -y
 # Install tools needed for installation
-apt-get install -y apt-transport-https curl wget rsync vim man sudo avahi-autoipd pwgen uuid-runtime gnupg net-tools
+apt-get install -y apt-transport-https curl wget rsync vim man sudo avahi-autoipd pwgen uuid-runtime gnupg net-tools open-vm-tools
 apt-get install -y tzdata ntp ntpdate
 
 # Prepare repositories
@@ -114,6 +114,23 @@ exit 0
 EOF
 
 chmod +x /etc/rc.local
+
+# adopt netplan for vmware interface name
+cat << EOF > /etc/netplan/01-netcfg.yaml
+# This file describes the network interfaces available on your system
+# For more information, see netplan(5).
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s3:
+      dhcp4: yes
+    ens160:
+      dhcp4: yes
+EOF
+
+netplan generate
+netplan apply
 
 # Configure graylog-server overrides
 mkdir -p /etc/systemd/system/graylog-server.service.d

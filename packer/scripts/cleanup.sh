@@ -5,16 +5,8 @@ set -x
 # in case there are changes for grub
 update-grub
 
-# Removing leftover leases and persistent rules
-echo "cleaning up dhcp leases"
-rm -f /var/lib/dhcp/*
-rm -f /etc/udev/rules.d/70-persistent-net.rules
-
 # Remove guest additions
 rm -f /home/ubuntu/VBoxGuestAdditions.iso
-
-echo "Adding a 2 sec delay to the interface up, to make the dhclient happy"
-echo "pre-up sleep 2" >> /etc/network/interfaces
 
 apt-get autoremove
 apt-get autoclean
