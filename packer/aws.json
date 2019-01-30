@@ -21,6 +21,7 @@
     {
       "type": "shell",
       "scripts": ["scripts/install_ami.sh",
+                  "scripts/aws_hostname.sh",
                   "scripts/shell_environment.sh",
                   "scripts/aws_cleanup.sh"
       ],
