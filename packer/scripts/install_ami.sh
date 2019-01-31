@@ -47,6 +47,7 @@ apt-get install -y nginx
 
 # configure Elasticsearch
 sed -i 's/#cluster.name.*/cluster.name: graylog/g' /etc/elasticsearch/elasticsearch.yml
+echo 'action.auto_create_index: false' >> /etc/elasticsearch/elasticsearch.yml
 
 # Prepare Graylog configuration for first boot
 touch /var/lib/graylog-server/firstboot
