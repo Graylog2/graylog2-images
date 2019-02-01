@@ -18,7 +18,7 @@ apt-get install -y tzdata ntp ntpdate
 
 # Prepare repositories
 apt-key adv --fetch-keys https://artifacts.elastic.co/GPG-KEY-elasticsearch
-echo 'deb https://artifacts.elastic.co/packages/5.x/apt stable main' > /etc/apt/sources.list.d/elastic.list
+echo 'deb https://artifacts.elastic.co/packages/oss-6.x/apt stable main' > /etc/apt/sources.list.d/elastic.list
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 68818C72E52529D4
 echo 'deb http://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse' > /etc/apt/sources.list.d/mongodb-org.list
 apt-get update
@@ -30,7 +30,7 @@ apt-get install -y openjdk-8-jre
 apt-get install -y mongodb-org
 
 # Install Elasticsearch
-apt-get install -y elasticsearch
+apt-get install -y elasticsearch-oss
 
 # Install Graylog server
 wget -nv -O /tmp/graylog-repo.deb https://packages.graylog2.org/repo/packages/graylog-3.0-repository_latest.deb
