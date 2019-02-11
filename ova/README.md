@@ -11,7 +11,7 @@ Graylog *OVA* appliance
 
 ### Download
 
-  * Stable branch (2.5.1): [graylog.ova](https://packages.graylog2.org/releases/graylog-omnibus/ova/graylog-2.5.1-1.ova)
+  * Stable branch (3.0.0): [graylog.ova](https://packages.graylog2.org/releases/graylog-omnibus/ova/graylog-3.0.0-12.ova)
   * Pre-release branch (3.0.0-rc.1): [graylog-preview.ova](https://packages.graylog2.org/releases/graylog-omnibus/ova/graylog-pre-3.0.0-10.rc.1.ova)
 
 Detailed documentation can be found [here](http://docs.graylog.org/en/latest/pages/installation/virtual_machine_appliances.html).
