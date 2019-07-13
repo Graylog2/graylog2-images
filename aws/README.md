@@ -22,4 +22,4 @@ AWS EC2 Images
 | 3.0.2     | ap-southeast-2 | ami-0f640a0863a2b02b7 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-0f640a0863a2b02b7  |
 | 3.0.2     | sa-east-1      | ami-0e614a0be4e7d1d94 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-0e614a0be4e7d1d94       |
 
-Detailed documentation can be found [here](http://docs.graylog.org/en/3.0/pages/installation/aws.html).
+Detailed documentation can be found [here](http://docs.graylog.org/en/3.1/pages/installation/aws.html).
