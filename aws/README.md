@@ -23,4 +23,4 @@ AWS EC2 Images
 | 3.1.3     | sa-east-1      | ami-03861e266df551de8) | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-03861e266df551de8)      |
 | 3.1.3     | ca-central-1   | ami-040dcd23479164e97) | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ca-central-1#LaunchInstanceWizard:ami=ami-040dcd23479164e97)   |
 
-Detailed documentation can be found [here](http://docs.graylog.org/en/3.1/pages/installation/aws.html).
+Detailed documentation can be found [here](http://docs.graylog.org/en/3.2/pages/installation/aws.html).
