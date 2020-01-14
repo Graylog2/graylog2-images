@@ -16,7 +16,7 @@
     "disk_size": 20000,
     "ssh_username": "ubuntu",
     "ssh_password": "ubuntu",
-    "ssh_wait_timeout": "20m",
+    "ssh_wait_timeout": "120m",
     "http_directory": "http",
     "boot_wait": "10s",
     "boot_command": [
