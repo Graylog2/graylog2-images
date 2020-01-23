@@ -41,6 +41,8 @@ rm -f /tmp/graylog-repo.deb
 apt-get update
 apt-get install graylog-server=${PACKAGE_VERSION}
 apt-get install graylog-enterprise-plugins=${PACKAGE_VERSION}
+apt-get install graylog-integrations-plugins=${PACKAGE_VERSION}
+apt-get install graylog-enterprise-integrations-plugins=${PACKAGE_VERSION}
 
 # Install Nginx
 apt-get install -y nginx
