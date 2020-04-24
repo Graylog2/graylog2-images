@@ -35,7 +35,7 @@ apt-get install -y mongodb-org
 apt-get install -y elasticsearch-oss
 
 # Install Graylog server
-wget -nv -O /tmp/graylog-repo.deb https://packages.graylog2.org/repo/packages/graylog-3.2-repository_latest.deb
+wget -nv -O /tmp/graylog-repo.deb https://packages.graylog2.org/repo/packages/graylog-3.3-repository_latest.deb
 dpkg -i /tmp/graylog-repo.deb
 rm -f /tmp/graylog-repo.deb
 apt-get update
