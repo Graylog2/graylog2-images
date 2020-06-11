@@ -12,7 +12,6 @@ pipeline
    {
       buildDiscarder logRotator(artifactDaysToKeepStr: '30', artifactNumToKeepStr: '100', daysToKeepStr: '30', numToKeepStr: '100')
       timestamps()
-      withAWS(region:'eu-west-1', credentials:'aws-key-releases')
    }
 
    parameters
@@ -43,11 +42,7 @@ pipeline
          {
            agent
            {
-             docker
-             {
-               label 'linux'
-               image 'hashicorp/packer:latest'
-             }
+             label 'linux'
            }
            when
            {
@@ -59,7 +54,7 @@ pipeline
              expression
              {
                //only trigger when run manually
-               currentBuild.buildCauses.toString().contains("hudson.model.Cause\$UserIdCause")
+               currentBuild.buildCauses.toString().contains('hudson.model.Cause$UserIdCause')
              }
            }
            steps
@@ -68,8 +63,12 @@ pipeline
 
               dir('packer')
               {
-                sh 'packer -v'
-                sh 'packer build aws.json'
+                sh 'packer version'
+
+                withAWS(region:'eu-west-1', credentials:'aws-ec2-ami-creator')
+                {
+                  sh 'packer build aws.json'
+                }
               }
            }
            post
@@ -96,7 +95,7 @@ pipeline
                expression
                {
                  //only trigger when run manually
-                 currentBuild.buildCauses.toString().contains("hudson.model.Cause\$UserIdCause")
+                 currentBuild.buildCauses.toString().contains('hudson.model.Cause$UserIdCause')
                }
              }
              steps
@@ -114,7 +113,11 @@ pipeline
                   '''
                 }
 
-                s3Upload(workingDir:'packer/output-virtualbox-iso', bucket:'graylog2-releases', path:'graylog-omnibus/ova/', includePathPattern:'*.ova')
+                withAWS(region:'eu-west-1', credentials:'aws-key-releases')
+                {
+                  s3Upload(workingDir:'packer/output-virtualbox-iso', bucket:'graylog2-releases', path:'graylog-omnibus/ova/', includePathPattern:'*.ova')
+                }
+
              }
              post
              {
@@ -140,7 +143,7 @@ pipeline
                 expression
                 {
                   //only trigger when run manually
-                  currentBuild.buildCauses.toString().contains("hudson.model.Cause\$UserIdCause")
+                  currentBuild.buildCauses.toString().contains('hudson.model.Cause$UserIdCause')
                 }
               }
               steps
