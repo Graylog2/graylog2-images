@@ -1,3 +1,9 @@
+if (currentBuild.buildCauses.toString().contains('BranchIndexingCause'))
+{
+  print "Build skipped due to trigger being Branch Indexing."
+  return
+}
+
 pipeline
 {
    agent none
@@ -20,6 +26,11 @@ pipeline
                       defaultValue: '',
                       description: 'What type of image do you want to build?'
      )
+   }
+
+   environment
+   {
+     PACKAGE_VERSION="${params.Graylog_Version}"
    }
 
    stages
@@ -86,9 +97,11 @@ pipeline
                   packer build virtualbox.json
                   cd output-virtualbox-iso
                   bundle exec ../ovf2ova.rb graylog.ovf
-                  mv graylog.ova graylog-${params.Graylog_Version}.ova
+                  mv graylog.ova graylog-${PACKAGE_VERSION}.ova
                   '''
                 }
+
+                s3Upload(workingDir:'packer/output-virtualbox-iso', bucket:'graylog2-releases', path:'graylog-omnibus/ova/', includePathPattern:'*.ova')
              }
              post
              {
