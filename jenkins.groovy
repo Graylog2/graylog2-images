@@ -48,8 +48,16 @@ pipeline
            }
            steps
            {
+              validateParameters()
               echo "params: ${params}"
               echo "Choice: ${params.Image_Type}"
+           }
+           post
+           {
+             success
+             {
+                cleanWs()
+             }
            }
          }
          stage('OVA')
@@ -68,7 +76,26 @@ pipeline
              }
              steps
              {
+                validateParameters()
                 echo "Choice: ${params.Image_Type}"
+
+                dir('packer')
+                {
+                  sh '''
+                  bundle install --path .bundle
+                  packer build virtualbox.json
+                  cd output-virtualbox-iso
+                  bundle exec ../ovf2ova.rb graylog.ovf
+                  mv graylog.ova graylog-${params.Graylog_Version}.ova
+                  '''
+                }
+             }
+             post
+             {
+               success
+               {
+                  cleanWs()
+               }
              }
           }
           stage('OVA Beta')
@@ -87,10 +114,30 @@ pipeline
               }
               steps
               {
+                 validateParameters()
                  echo "Choice: ${params.Image_Type}"
+              }
+              post
+              {
+                success
+                {
+                   cleanWs()
+                }
               }
            }
        }
      }
    }
+}
+
+def validateParameters()
+{
+  script
+  {
+    if (params.Graylog_Version == '')
+    {
+      currentBuild.result = 'ABORTED'
+      error('Graylog_Version parameter is required.')
+    }
+  }
 }
