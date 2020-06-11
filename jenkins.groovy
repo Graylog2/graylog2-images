@@ -56,12 +56,21 @@ pipeline
              {
                params.Image_Type.contains("Build AMI")
              }
+             expression
+             {
+               //only trigger when run manually
+               currentBuild.buildCauses.toString().contains("hudson.model.Cause\$UserIdCause")
+             }
            }
            steps
            {
               validateParameters()
-              echo "params: ${params}"
-              echo "Choice: ${params.Image_Type}"
+
+              dir('packer')
+              {
+                sh 'packer -v'
+                sh 'packer build aws.json'
+              }
            }
            post
            {
@@ -84,11 +93,15 @@ pipeline
                {
                  params.Image_Type.contains("Build OVA")
                }
+               expression
+               {
+                 //only trigger when run manually
+                 currentBuild.buildCauses.toString().contains("hudson.model.Cause\$UserIdCause")
+               }
              }
              steps
              {
                 validateParameters()
-                echo "Choice: ${params.Image_Type}"
 
                 dir('packer')
                 {
@@ -124,11 +137,34 @@ pipeline
                 {
                   params.Image_Type.contains("Build Beta OVA")
                 }
+                expression
+                {
+                  //only trigger when run manually
+                  currentBuild.buildCauses.toString().contains("hudson.model.Cause\$UserIdCause")
+                }
               }
               steps
               {
                  validateParameters()
-                 echo "Choice: ${params.Image_Type}"
+
+                 dir('packer')
+                 {
+                   sh '''
+                   bundle install --path .bundle
+                   packer build virtualbox-beta.json
+
+                   cd output-virtualbox-iso
+                   if test -e "graylog-beta.ovf";then
+                     bundle exec ../ovf2ova.rb graylog-beta.ovf
+                     mv graylog-beta.ova graylog-pre-${PACKAGE_VERSION}.ova
+                   else
+                     bundle exec ../ovf2ova.rb graylog-preview.ovf
+                     mv graylog-preview.ova graylog-pre-${PACKAGE_VERSION}.ova
+                   fi
+                   '''
+                 }
+
+                 s3Upload(workingDir:'packer/output-virtualbox-iso', bucket:'graylog2-releases', path:'graylog-omnibus/ova/', includePathPattern:'*.ova')
               }
               post
               {
