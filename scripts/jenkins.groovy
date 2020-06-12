@@ -12,6 +12,7 @@ pipeline
    {
       buildDiscarder logRotator(artifactDaysToKeepStr: '30', artifactNumToKeepStr: '100', daysToKeepStr: '30', numToKeepStr: '100')
       timestamps()
+      skipDefaultCheckout(true)
    }
 
    parameters
@@ -61,6 +62,9 @@ pipeline
            {
               validateParameters()
 
+              echo "Checking out graylog2-images..."
+              checkout poll: false, scm: [$class: 'GitSCM', branches: [[name: "*/${params.BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'WipeWorkspace']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/juju2112/graylog2-images.git']]]
+
               dir('packer')
               {
                 sh 'packer version'
@@ -104,6 +108,10 @@ pipeline
              steps
              {
                 validateParameters()
+
+                echo "Checking out graylog2-images..."
+                checkout poll: false, scm: [$class: 'GitSCM', branches: [[name: "*/${params.BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'WipeWorkspace']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/juju2112/graylog2-images.git']]]
+
 
                 dir('packer')
                 {
@@ -152,6 +160,9 @@ pipeline
               steps
               {
                  validateParameters()
+
+                 echo "Checking out graylog2-images..."
+                 checkout poll: false, scm: [$class: 'GitSCM', branches: [[name: "*/${params.BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'WipeWorkspace']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/juju2112/graylog2-images.git']]]
 
                  dir('packer')
                  {
