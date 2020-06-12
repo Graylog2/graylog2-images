@@ -19,7 +19,7 @@ pipeline
    parameters
    {
        string(name: 'Graylog_Version', defaultValue: '', description: '2.x: 2.5.0-beta.1-1 (the git tag in graylog2-images) | 3.x: 3.0.0-4.alpha.4 (the deb package version)')
-       gitParameter branchFilter: 'origin/(.*)', defaultValue: 'jenkins', name: 'BRANCH', type: 'PT_BRANCH', sortMode: 'DESCENDING_SMART', description: 'The branch name that should be used for the build.'
+       gitParameter branchFilter: 'origin/(.*)', defaultValue: '', name: 'BRANCH', type: 'PT_BRANCH', sortMode: 'DESCENDING_SMART', description: 'The branch name that should be used for the build.'
        extendedChoice(name: 'Image_Type',
                       type: 'PT_CHECKBOX',
                       multiSelectDelimiter: " ", // this only defines delimiter used in the output string value, not used for parsing value input, which must be comma-separated!
@@ -64,7 +64,7 @@ pipeline
               validateParameters()
 
               echo "Checking out graylog2-images..."
-              checkout poll: false, scm: [$class: 'GitSCM', branches: [[name: "*/${params.BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'WipeWorkspace']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/juju2112/graylog2-images.git']]]
+              checkout poll: false, scm: [$class: 'GitSCM', branches: [[name: "*/${params.BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'WipeWorkspace']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Graylog2/graylog2-images.git']]]
 
               dir('packer')
               {
