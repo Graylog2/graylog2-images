@@ -5,6 +5,8 @@
   "builders": [{
     "type": "amazon-ebs",
     "region": "us-east-1",
+    "vpc_id": "vpc-1fa8027a",
+    "subnet_id": "subnet-b742b7ee",
     "source_ami": "ami-920b10ed",
     "instance_type": "m3.medium",
     "ssh_username": "ubuntu",
