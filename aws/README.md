@@ -17,6 +17,7 @@ AWS EC2 Images
 | 3.3.2     | eu-west-2      | ami-081e856792d017e18) | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-2#LaunchInstanceWizard:ami=ami-081e856792d017e18)      |
 | 3.3.2     | eu-west-3      | ami-016db4d9c08984af4) | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-3#LaunchInstanceWizard:ami=ami-016db4d9c08984af4)      |
 | 3.3.2     | eu-central-1   | ami-0ac9b61b059e85c8f) | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-0ac9b61b059e85c8f)   |
+| 3.3.2     | eu-north-1   | ami-0eee905b56ffd3e51) | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-north-1#LaunchInstanceWizard:ami=ami-0eee905b56ffd3e51)   |
 | 3.3.2     | ap-northeast-1 | ami-040f9a690290d2811) | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#LaunchInstanceWizard:ami=ami-040f9a690290d2811) |
 | 3.3.2     | ap-southeast-1 | ami-0c5705d8bbfa9a9a2) | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LaunchInstanceWizard:ami=ami-0c5705d8bbfa9a9a2) |
 | 3.3.2     | ap-southeast-2 | ami-0115ce0b1355b4718) | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-0115ce0b1355b4718) |
