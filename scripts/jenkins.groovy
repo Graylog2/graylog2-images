@@ -24,7 +24,8 @@ pipeline
                     type: 'PT_BRANCH',
                     defaultValue: '3.3',
                     branchFilter: 'origin/(.*)',
-                    sortMode: 'DESCENDING_SMART')
+                    sortMode: 'DESCENDING_SMART',
+                    selectedValue: 'DEFAULT')
        extendedChoice(name: 'Image_Type',
                       type: 'PT_CHECKBOX',
                       multiSelectDelimiter: " ", // this only defines delimiter used in the output string value, not used for parsing value input, which must be comma-separated!
