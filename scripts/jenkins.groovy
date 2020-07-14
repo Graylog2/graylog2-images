@@ -80,10 +80,16 @@ pipeline
                 {
                   withCredentials([usernamePassword(credentialsId: 'aws-ec2-ami-creator', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')])
                   {
-                    sh 'packer build aws.json'
+                    sh 'packer build aws.json | tee packer_output'
                   }
                 }
               }
+
+              sh 'grep -A 30 "amazon-ebs: AMIs were created:" packer_output | grep -v "amazon-ebs: AMIs were created:" > ami-ids'
+              sh "scripts/update-aws-ami.rb packer/ami-ids $PACKAGE_VERSION"
+              sh 'git add -u'
+              sh 'git commit -m "Updating AMI IDs in README."'
+              sh "git push origin ${params.BRANCH}"
            }
            post
            {
