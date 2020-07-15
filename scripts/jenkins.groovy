@@ -85,7 +85,7 @@ pipeline
                 }
               }
 
-              sh 'grep -A 30 "amazon-ebs: AMIs were created:" packer/packer_output | grep -v "amazon-ebs: AMIs were created:" > ami-ids'
+              sh 'grep -A 30 "amazon-ebs: AMIs were created:" packer/packer_output | grep -v "amazon-ebs: AMIs were created:" | sed '/^$/d' > ami-ids'
               sh "ruby scripts/update-aws-ami.rb ami-ids $PACKAGE_VERSION"
               sh 'git add -u'
               sh 'git commit -m "Updating AMI IDs in README."'
