@@ -38,6 +38,7 @@ pipeline
    environment
    {
      PACKAGE_VERSION="${params.Graylog_Version}"
+     GRAYLOG_IMAGES_BRANCH="${params.BRANCH}"
    }
 
    stages
@@ -70,7 +71,7 @@ pipeline
               validateParameters()
 
               echo "Checking out graylog2-images..."
-              checkout poll: false, scm: [$class: 'GitSCM', branches: [[name: "*/${params.BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'WipeWorkspace']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Graylog2/graylog2-images.git']]]
+              checkout poll: false, scm: [$class: 'GitSCM', branches: [[name: "*/${params.BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'LocalBranch', localBranch: "${params.BRANCH}"], [$class: 'WipeWorkspace']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Graylog2/graylog2-images.git']]]
 
               dir('packer')
               {
@@ -80,16 +81,22 @@ pipeline
                 {
                   withCredentials([usernamePassword(credentialsId: 'aws-ec2-ami-creator', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')])
                   {
-                    sh 'packer build aws.json | tee packer_output'
+                    sh '''#!/bin/bash
+                        set -o pipefail
+                        packer build aws.json | tee packer_output
+                       '''
                   }
                 }
               }
 
-              sh 'grep -A 30 "amazon-ebs: AMIs were created:" packer/packer_output | grep -v "amazon-ebs: AMIs were created:" | sed "/^$/d" > ami-ids'
-              sh "ruby scripts/update-aws-ami.rb ami-ids $PACKAGE_VERSION"
-              sh 'git add -u'
-              sh 'git commit -m "Updating AMI IDs in README."'
-              sh "git push origin ${params.BRANCH}"
+              echo "Updating README.md..."
+              sh '''
+                  grep -A 30 "amazon-ebs: AMIs were created:" packer/packer_output | grep -v "amazon-ebs: AMIs were created:" | sed "/^$/d" > ami-ids
+                  ruby scripts/update-aws-ami.rb ami-ids $PACKAGE_VERSION
+                  git add -u
+                  git commit -m "Updating AMI IDs in README."
+                  git push origin $GRAYLOG_IMAGES_BRANCH
+                 '''
            }
            post
            {
