@@ -1,3 +1,9 @@
+if (currentBuild.buildCauses.toString().contains('BranchIndexingCause'))
+{
+  print "Build skipped due to trigger being Branch Indexing."
+  return
+}
+
 pipeline
 {
    agent none
@@ -65,7 +71,7 @@ pipeline
               validateParameters()
 
               echo "Checking out graylog2-images..."
-              checkout poll: false, scm: [$class: 'GitSCM', branches: [[name: "*/${params.BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'LocalBranch', localBranch: "${params.BRANCH}"], [$class: 'WipeWorkspace']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Graylog2/graylog2-images.git']]]
+              checkout poll: false, scm: [$class: 'GitSCM', branches: [[name: "*/${params.BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'LocalBranch', localBranch: "${params.BRANCH}"], [$class: 'WipeWorkspace']], submoduleCfg: [], userRemoteConfigs: [[url: 'git@github.com:Graylog2/graylog2-images.git']]]
 
               dir('packer')
               {
