@@ -45,7 +45,7 @@ readme = File.readlines(readme_file)
 readme.clone.each_with_index do |line, idx|
   images.each do |region, ami|
     if line.include?(region)
-      readme[idx].gsub!(/ami-\S+/, ami + ')')
+      readme[idx].gsub!(/ami-\w+/, ami)
       readme[idx].gsub!(/\d+\.\d+\.\d+/, version)
     end
   end
