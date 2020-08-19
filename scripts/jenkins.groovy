@@ -92,7 +92,7 @@ pipeline
               echo "Updating README.md..."
               sh '''
                   grep -A 30 "amazon-ebs: AMIs were created:" packer/packer_output | grep -v "amazon-ebs: AMIs were created:" | sed "/^$/d" > ami-ids
-                  ruby scripts/update-aws-ami.rb ami-ids $PACKAGE_VERSION
+                  ruby scripts/update-aws-ami.rb ami-ids ${PACKAGE_VERSION%-[[:digit:]]}
                   git add -u
                   git commit -m "Updating AMI IDs in README."
                   git push origin $GRAYLOG_IMAGES_BRANCH
