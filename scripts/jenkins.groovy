@@ -200,7 +200,10 @@ pipeline
                    '''
                  }
 
-                 s3Upload(workingDir:'packer/output-virtualbox-iso', bucket:'graylog2-releases', path:'graylog-omnibus/ova/', includePathPattern:'*.ova')
+                 withAWS(region:'eu-west-1', credentials:'aws-key-releases')
+                 {
+                   s3Upload(workingDir:'packer/output-virtualbox-iso', bucket:'graylog2-releases', path:'graylog-omnibus/ova/', includePathPattern:'*.ova')
+                 }
               }
               post
               {
