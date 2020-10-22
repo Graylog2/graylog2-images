@@ -22,7 +22,7 @@ apt-get install -y tzdata ntp ntpdate
 apt-key adv --fetch-keys https://artifacts.elastic.co/GPG-KEY-elasticsearch
 echo 'deb https://artifacts.elastic.co/packages/oss-7.x/apt stable main' > /etc/apt/sources.list.d/elastic.list
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 68818C72E52529D4
-echo 'deb http://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse' > /etc/apt/sources.list.d/mongodb-org.list
+echo 'deb http://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse' > /etc/apt/sources.list.d/mongodb-org.list
 apt-get update
 
 # Install Java
