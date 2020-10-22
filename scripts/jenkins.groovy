@@ -22,7 +22,7 @@ pipeline
        gitParameter(name: 'BRANCH',
                     description: 'The branch name that should be used for the build.',
                     type: 'PT_BRANCH',
-                    defaultValue: '3.3',
+                    defaultValue: '4.0',
                     branchFilter: 'origin/(.*)',
                     sortMode: 'DESCENDING_SMART',
                     selectedValue: 'DEFAULT')
