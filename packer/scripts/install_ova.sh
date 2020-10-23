@@ -180,6 +180,7 @@ server {
         proxy_set_header Host \$host;
         proxy_set_header X-Real-IP \$remote_addr;
         proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Graylog-Server-URL http://\$host;
         proxy_pass_request_headers on;
         proxy_connect_timeout 150;
         proxy_send_timeout 100;
