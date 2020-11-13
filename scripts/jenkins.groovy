@@ -29,7 +29,7 @@ pipeline
        extendedChoice(name: 'Image_Type',
                       type: 'PT_CHECKBOX',
                       multiSelectDelimiter: " ", // this only defines delimiter used in the output string value, not used for parsing value input, which must be comma-separated!
-                      value: """'Build AMI', 'Build OVA', 'Build Beta OVA'""",
+                      value: """'Build AMI', 'Build OVA', 'Build PRE OVA'""",
                       defaultValue: '',
                       description: 'What type of image do you want to build?'
      )
@@ -168,7 +168,7 @@ pipeline
                 beforeAgent true
                 expression
                 {
-                  params.Image_Type.contains("Build Beta OVA")
+                  params.Image_Type.contains("Build PRE OVA")
                 }
                 expression
                 {
