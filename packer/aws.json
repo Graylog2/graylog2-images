@@ -7,7 +7,7 @@
     "region": "eu-west-1",
     "vpc_id": "vpc-0f54a96a",
     "subnet_id": "subnet-7c03c50b",
-    "source_ami": "ami-0bd5ae06b6779872a",
+    "source_ami": "ami-0b7fd7bc9c6fb1c78",
     "instance_type": "m3.medium",
     "ssh_username": "ubuntu",
     "ami_name": "graylog-{{user `package_version`}}",
