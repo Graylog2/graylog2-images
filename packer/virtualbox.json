@@ -16,7 +16,7 @@
     "ssh_password": "ubuntu",
     "ssh_wait_timeout": "120m",
     "http_directory": "http",
-    "boot_wait": "10s",
+    "boot_wait": "5s",
     "boot_command": [
       "<enter><enter><f6><esc><wait> ",
       "autoinstall ds=nocloud-net;seedfrom=http://{{ .HTTPIP }}:{{ .HTTPPort }}/",
