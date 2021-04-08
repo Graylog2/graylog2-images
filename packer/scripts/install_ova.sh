@@ -12,7 +12,7 @@ echo "Building image for Graylog $PACKAGE_VERSION"
 export DEBIAN_FRONTEND=noninteractive
 
 # Update repositories
-apt-get update
+apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update     #Hack to bypass "is not valid yet" error
 apt-get dist-upgrade -y -o Dpkg::Options::="--force-confdef"
 # Install tools needed for installation
 apt-get install -y apt-transport-https curl wget rsync vim man sudo avahi-autoipd pwgen uuid-runtime gnupg net-tools open-vm-tools
