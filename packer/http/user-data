@@ -1,10 +1,6 @@
 #cloud-config
 autoinstall:
   version: 1
-  locale: en_US.utf8
-  keyboard:
-    layout: en
-    variant: us
   storage:
     layout:
       name: lvm
@@ -18,3 +14,13 @@ autoinstall:
     disable_root: false
   late-commands:
     - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
+users:
+  - default
+  - name: ubuntu
+    passwd: "$6$exDY1mhS4KUYCE/2$zmn9ToZwTKLhCw.b4/b.ZRTIZM30JZ4QrOQ2aOXJ8yk96xpcCof0kxKwuX1kqLG/ygbJ1f8wxED22bTL4F46P0"
+    shell: /bin/bash
+    lock-passwd: false
+    ssh_pwauth: True
+    chpasswd: { expire: False }
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users, admin
