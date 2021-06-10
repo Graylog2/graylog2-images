@@ -1,0 +1,20 @@
+#cloud-config
+autoinstall:
+  version: 1
+  storage:
+    layout:
+      name: lvm
+  ssh:
+    install-server: true
+  user-data:
+    disable_root: false
+users:
+  - default
+  - name: ubuntu
+    passwd: "$6$exDY1mhS4KUYCE/2$zmn9ToZwTKLhCw.b4/b.ZRTIZM30JZ4QrOQ2aOXJ8yk96xpcCof0kxKwuX1kqLG/ygbJ1f8wxED22bTL4F46P0"
+    shell: /bin/bash
+    lock-passwd: false
+    ssh_pwauth: True
+    chpasswd: { expire: False }
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users, admin
