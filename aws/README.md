@@ -9,19 +9,19 @@ AWS EC2 Images
 
 | Version   | Region         | AMI                   | Launch Wizard                                                                                                                      |
 | --------- | --------       | -----                 | -------------                                                                                                                      |
-| 4.0.9-1     | us-east-1      | ami-0dda82eb3b04c7049 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-0dda82eb3b04c7049)      |
-| 4.0.9-1     | us-east-2      | ami-0772574135f1fcff6 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-2#LaunchInstanceWizard:ami=ami-0772574135f1fcff6)      |
-| 4.0.9-1     | us-west-1      | ami-04d43b9af7fa21ed4 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-04d43b9af7fa21ed4)      |
-| 4.0.9-1     | us-west-2      | ami-094238acf81f76e42 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-094238acf81f76e42)      |
-| 4.0.9-1     | eu-west-1      | ami-047f9e19216a0317d | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-047f9e19216a0317d)      |
-| 4.0.9-1     | eu-west-2      | ami-05864e4ae973ce941 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-2#LaunchInstanceWizard:ami=ami-05864e4ae973ce941)      |
-| 4.0.9-1     | eu-west-3      | ami-0c34881ad30c6f74a | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-3#LaunchInstanceWizard:ami=ami-0c34881ad30c6f74a)      |
-| 4.0.9-1     | eu-central-1   | ami-024cc9c27d92b9d8a | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-024cc9c27d92b9d8a)   |
-| 4.0.9-1     | eu-north-1   | ami-0eedc1681c0556d76 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-north-1#LaunchInstanceWizard:ami=ami-0eedc1681c0556d76)   |
-| 4.0.9-1     | ap-northeast-1 | ami-0279f2960c358e0b3 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#LaunchInstanceWizard:ami=ami-0279f2960c358e0b3) |
-| 4.0.9-1     | ap-southeast-1 | ami-0a8f38781b7f77296 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LaunchInstanceWizard:ami=ami-0a8f38781b7f77296) |
-| 4.0.9-1     | ap-southeast-2 | ami-0091f588974d6fd1c | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-0091f588974d6fd1c) |
-| 4.0.9-1     | sa-east-1      | ami-063e8a9cc8022db7e | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-063e8a9cc8022db7e)      |
-| 4.0.9-1     | ca-central-1   | ami-0f036b2ae8436a4ca | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ca-central-1#LaunchInstanceWizard:ami=ami-0f036b2ae8436a4ca)   |
+| 4.0.10-1     | us-east-1      | ami-0bf620363a05f5c7b | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-0bf620363a05f5c7b)      |
+| 4.0.10-1     | us-east-2      | ami-09f8b204fe8954fd8 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-2#LaunchInstanceWizard:ami=ami-09f8b204fe8954fd8)      |
+| 4.0.10-1     | us-west-1      | ami-001d1c272241728be | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-001d1c272241728be)      |
+| 4.0.10-1     | us-west-2      | ami-076e765b535c049d7 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-076e765b535c049d7)      |
+| 4.0.10-1     | eu-west-1      | ami-0c029496e23aeb3ad | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-0c029496e23aeb3ad)      |
+| 4.0.10-1     | eu-west-2      | ami-0045e529bdf8e734d | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-2#LaunchInstanceWizard:ami=ami-0045e529bdf8e734d)      |
+| 4.0.10-1     | eu-west-3      | ami-0c7f134373f558067 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-3#LaunchInstanceWizard:ami=ami-0c7f134373f558067)      |
+| 4.0.10-1     | eu-central-1   | ami-01cc67c8e4e9a391d | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-01cc67c8e4e9a391d)   |
+| 4.0.10-1     | eu-north-1   | ami-00bd4b375c7413bd7 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-north-1#LaunchInstanceWizard:ami=ami-00bd4b375c7413bd7)   |
+| 4.0.10-1     | ap-northeast-1 | ami-0584ba346aecc8151 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#LaunchInstanceWizard:ami=ami-0584ba346aecc8151) |
+| 4.0.10-1     | ap-southeast-1 | ami-00dabd6a90ce614d6 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LaunchInstanceWizard:ami=ami-00dabd6a90ce614d6) |
+| 4.0.10-1     | ap-southeast-2 | ami-03c03222b16a0f0a6 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-03c03222b16a0f0a6) |
+| 4.0.10-1     | sa-east-1      | ami-0c7ed7c646999c7a8 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-0c7ed7c646999c7a8)      |
+| 4.0.10-1     | ca-central-1   | ami-007b5d9fe90af6211 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ca-central-1#LaunchInstanceWizard:ami=ami-007b5d9fe90af6211)   |
 
 Detailed documentation can be found [here](http://docs.graylog.org/en/3.2/pages/installation/aws.html).
