@@ -26,13 +26,21 @@ pipeline
                     branchFilter: 'origin/(.*)',
                     sortMode: 'DESCENDING_SMART',
                     selectedValue: 'DEFAULT')
-       extendedChoice(name: 'Image_Type',
-                      type: 'PT_CHECKBOX',
-                      multiSelectDelimiter: " ", // this only defines delimiter used in the output string value, not used for parsing value input, which must be comma-separated!
-                      value: """'Build AMI', 'Build OVA', 'Build PRE OVA'""",
-                      defaultValue: '',
-                      description: 'What type of image do you want to build?'
-     )
+       booleanParam(
+           name: 'BUILD_AMI',
+           defaultValue: false,
+           description: 'Build AWS AMI image?'
+       )
+       booleanParam(
+           name: 'BUILD_OVA',
+           defaultValue: false,
+           description: 'Build OVA image?'
+       )
+       booleanParam(
+           name: 'BUILD_PRE_OVA',
+           defaultValue: false,
+           description: 'Build pre-OVA image?'
+       )
    }
 
    environment
@@ -56,10 +64,7 @@ pipeline
            when
            {
              beforeAgent true
-             expression
-             {
-               params.Image_Type.contains("Build AMI")
-             }
+             equals expected: true, actual: params.BUILD_AMI
              expression
              {
                //only trigger when run manually
@@ -115,10 +120,7 @@ pipeline
              when
              {
                beforeAgent true
-               expression
-               {
-                 params.Image_Type.contains("Build OVA")
-               }
+               equals expected: true, actual: params.BUILD_OVA
                expression
                {
                  //only trigger when run manually
@@ -166,10 +168,7 @@ pipeline
               when
               {
                 beforeAgent true
-                expression
-                {
-                  params.Image_Type.contains("Build PRE OVA")
-                }
+                equals expected: true, actual: params.BUILD_PRE_OVA
                 expression
                 {
                   //only trigger when run manually
